@@ -1,0 +1,35 @@
+<nav class="navbar sidebar-menu navbar-expand-lg">
+  <div class="navbar-collapse collapse" id="navbarVerticalCollapse">
+    <!-- scrollbar removed-->
+    <div class="navbar-vertical-content-left">
+      <app-logo></app-logo>
+      <span class="dx-icon dx-icon-chevrondoubleleft" id="chevrondoubleleft" (click)="onClipse()"></span>
+      <ul class="navbar-nav flex-column" id="navbarVerticalNav">
+        <li class="nav-item">
+          <!-- parent pages-->
+          <div class="nav-item-wrapper">
+            <div class="d-flex align-items-center">
+              <h5 class="nav-link-text">{{ main?.label }}<br/><span>{{ date | datestring }}</span></h5>
+            </div>
+          </div>
+        </li>
+        <hr/>
+        <li class="nav-item">
+          <div class="nav-item-wrapper list-menu" *ngFor="let menu of menus">
+            <a *ngIf="menu.enabled" class="nav-link label-1" [routerLink]="['',{outlets:{dashboard: menu.url}}]" role="button" routerLinkActive="active" >
+              <div class="d-flex align-items-center">
+                <span [ngClass]="menu?.class"><img src="{{ menu.icone }}"></span>
+                <span class="nav-link-text">{{ menu.label }}</span>
+              </div>
+            </a>
+         </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--<div class="navbar-vertical-footer">
+    <a class="btn navbar-vertical-toggle border-0 fw-semi-bold w-100 white-space-nowrap d-flex align-items-center"routerLink="/dashboard">
+      <span class="navbar-vertical-footer-text ms-2"><img src="/assets/images/panel/prev.svg"/>Précédent</span>
+    </a>
+  </div>-->
+</nav>

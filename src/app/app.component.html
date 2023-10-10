@@ -1,0 +1,6 @@
+<div class="container-fluid">
+  <div class="body-content">
+      <router-outlet *ngIf="!login"></router-outlet>
+      <app-dashboard *ngIf="login" [dashboard]="dashboard"></app-dashboard>
+  </div>
+</div>

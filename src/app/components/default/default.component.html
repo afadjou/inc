@@ -1,0 +1,8 @@
+<div class="default-dashboard">
+  <div class="card-item" *ngFor="let shutter of shutterService.getShuttersWidhExcludes(['default']); let i = index">
+    <a class="d-block hover-bg-200 p-2 rounded-3 text-center text-decoration-none" (click)="onShutterClick(shutter)">
+      <img src="{{ shutter.icone }}" alt="{{ shutter.label }}" width="30">
+      <p class="mb-0 text-black text-truncate fs--2 mt-1 pt-1">{{ shutter.label }}</p>
+    </a>
+  </div>
+</div>

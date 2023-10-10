@@ -1,0 +1,18 @@
+.default-dashboard {
+  padding: 20px;
+  display: flex;
+  background-color: var(--inc-white);
+  .card-item {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    a {
+      width: 100%;
+      height: 100%;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

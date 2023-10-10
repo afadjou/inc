@@ -1,0 +1,35 @@
+.users-contents {
+  display: contents;
+  padding: 30px;
+  h4 {
+    font-family: "system-ui";
+    font-weight: 100;
+  }
+  .list-content {
+    float: left;
+    border: solid 1px #dddddd;
+    background-color: #ffffff;
+    padding: 32px;
+    width: 60%;
+    margin-bottom: 0.8em;
+    box-shadow: 0 2px 8px rgb(0 1 1 / 5%);
+    .users-list-ul a {
+      background-color: #f4f4f4;
+      margin-right: 6px;
+      border: 0;
+      color: unset;
+      &:hover {
+        border: 0;
+      }
+    }
+    a.active {
+      border: 0 !important;
+    }
+    .users-list {
+      position: relative;
+      background-color: #ffffff;
+      padding: 23px;
+      font-size: 1.0em;
+    }
+  }
+}

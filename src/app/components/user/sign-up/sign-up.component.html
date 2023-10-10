@@ -1,0 +1,80 @@
+<form class="add-account" #form action="" (submit)="onFormSubmit($event)" method="post" enctype="multipart/form-data">
+  <h3 *ngIf="is_new">Création nouveau compte</h3>
+  <h3 *ngIf="!is_new">Modifier mon compte</h3>
+  <hr/>
+  <dx-form id="form" [formData]="user">
+    <dxi-item itemType="group" cssClass="first-group" [colCount]="4">
+      <dxi-item>
+        <div class="form-avatar">
+          <img src="{{ user.photoURL }}"/>
+        </div>
+      </dxi-item>
+      <dxi-item itemType="group" [colSpan]="3">
+        <dxi-item dataField="cne"  [label]="{ text: 'NIN' }"></dxi-item>
+        <!--<dxi-item dataField="serial" [label]="{ text: 'Série' }"
+          editorType="dxSelectBox"
+          [editorOptions]="{ items: serials, valueExpr: 'id', displayExpr: 'label' }">
+        </dxi-item>-->
+        <dxi-item dataField="name" [label]="{ text: 'Nom' }">
+          <dxi-validation-rule type="required" message="Le Nom est requis"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="firstName" [label]="{ text: 'Prénom' }">
+          <dxi-validation-rule type="required" message="Le prénom est requis"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item
+          dataField="birthday"  [label]="{ text: 'Date de naissance' }"
+          editorType="dxDateBox"
+          [editorOptions]="{ width: '100%' }"
+        >
+          <dxi-validation-rule type="required" message="La date de naissance est requise"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="birth_location" [label]="{ text: 'Lieu de naissance' }">
+          <dxi-validation-rule type="required" message="Le lieu de naissance est obligatoire"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="email" [label]="{ text: 'Email' }">
+          <dxi-validation-rule type="required" message="L'adresse email est requise"></dxi-validation-rule>
+          <dxi-validation-rule type="email" message="L'email n'est pas valide"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item>
+          <dx-file-uploader selectButtonText="Choisir une image" accept="image/*" uploadMode="userForm" (change)="onUploaded($event)"></dx-file-uploader>
+        </dxi-item>
+      </dxi-item>
+    </dxi-item>
+    <dxi-item itemType="group" cssClass="second-group" [colCount]="2">
+      <dxi-item itemType="group">
+        <dxi-item dataField="address"  [label]="{ text: 'Adresse' }">
+        </dxi-item>
+        <dxi-item dataField="city"  [label]="{ text: 'Ville' }">
+          <dxi-validation-rule type="required" message="La ville est obligatoire"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item
+          dataField="role"  [label]="{ text: 'Role' }"
+          editorType="dxSelectBox"
+          [editorOptions]="{ items: roles, valueExpr: 'id', displayExpr: 'label' }"
+          *ngIf="connectedUser?.role == 'ADMIN_ROLE'"
+        >
+        <dxi-validation-rule type="required" message="Le rôle est obligatoire"></dxi-validation-rule>
+      </dxi-item>
+      </dxi-item>
+      <dxi-item itemType="group">
+        <dxi-item
+          dataField="country"  [label]="{ text: 'Pays' }"
+        >
+        <dxi-validation-rule type="required" message="Le pays est obligatoire"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="zip"  [label]="{ text: 'Code postal' }">
+          <dxi-validation-rule type="required" message="Le code postal est obligatoire"></dxi-validation-rule>
+        </dxi-item>
+        <dxi-item
+          dataField="phoneNumber"
+          [label]="{ text: 'Numéro de télephone' }"
+          [editorOptions]="{ mask: '+33 0 00-00-00-00' }"
+        ></dxi-item>
+      </dxi-item>
+    </dxi-item>
+    <dxi-item itemType="button" horizontalAlignment="right" [buttonOptions]="buttonOptions"></dxi-item>
+  </dx-form>
+</form>
+
+
+

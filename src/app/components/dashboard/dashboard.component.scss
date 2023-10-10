@@ -1,0 +1,25 @@
+
+main {
+  display: flex;
+  padding: 0;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  height: 100vh;
+  .col-content {
+    position: relative;
+    width: 21.9%;
+  }
+  .col-content-left {
+    overflow: hidden;
+    transition: 0.5s;
+  }
+  .col-content-right {
+    width: 100%;
+    margin-left: -4px;
+    transition: width .5s;
+    .main-dashboard {
+      padding: 20px;
+      overflow: inherit;
+    }
+  }
+}

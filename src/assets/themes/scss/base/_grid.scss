@@ -1,0 +1,81 @@
+dx-data-grid.dx-widget {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  .dx-datagrid {
+    border-radius: 6px;
+    border: solid 0.5px var(--inc-gray-200);
+    -webkit-box-shadow: 0px 1px 5px 0 var(--inc-gray-300);
+    overflow: hidden;
+    .dx-datagrid-header-panel {
+      padding: 6px;
+      background-color: var(--inc-white);
+      .dx-toolbar {
+        margin: 0;
+        .dx-button-content {
+          padding: 5px;
+          .dx-icon {
+            font-size: 15px;
+          }
+        }
+      }
+    }
+    .dx-datagrid-headers {
+      border: 0;
+      border-top: solid 0.5px var(--inc-gray-200);
+      background-color: var(--inc-gray-soft);
+      padding: 1px;
+      .dx-datagrid-content {
+        table {
+          tr {
+            td {
+              border:0;
+              font-family: "system-ui";
+              font-weight: 100;
+              font-size: 12px;
+              &:first-child,
+              &:last-child{
+                border: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+    .dx-datagrid-rowsview {
+      border: 0;
+      .dx-datagrid-content {
+        table {
+          tr {
+            td {
+              border: solid 0.5px var(--inc-gray-200);
+              font-family: "system-ui";
+              font-weight: 100;
+              font-size: 12px;
+              a.dx-link {
+                color: var(--inc-primary);
+              }
+              .dx-icon {
+                color: var(--inc-gray-300);
+              }
+            }
+            &:nth-child(even) {
+              background-color: var(--inc-gray);
+            }
+          }
+        }
+      }
+    }
+    .dx-datagrid-pager {
+      font-family: "system-ui";
+      font-weight: 100;
+      font-size: 12px;
+      padding: 6px 15px;
+
+      .dx-navigate-button {
+        &:before {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

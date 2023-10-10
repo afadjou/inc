@@ -1,0 +1,28 @@
+.add-account {
+  padding: 0 3rem 3rem;
+  .dx-form {
+    padding: 25px;
+    border: solid 1px #d2d3d5;
+    background-color: var(--inc-white);
+
+    .first-group,
+    .second-group {
+      padding: 20px;
+    }
+    .second-group {
+      background-color: rgba(191, 191, 191, 0.15);
+    }
+    .form-avatar{
+      img {
+        height: 128px;
+        width: 128px;
+        margin-right: 10px;
+        border: 1px solid #d2d3d5;
+        border-radius: 50%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+}

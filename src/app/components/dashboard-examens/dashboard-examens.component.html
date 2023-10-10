@@ -1,0 +1,61 @@
+<div class="results">
+  <nav class="navbar">
+    <div class="dx-field-value">
+      <dx-select-box
+        [items]="sessions"
+        [value]= "current_session"
+        (onSelectionChanged)="onSelectionChanged($event)"
+      ></dx-select-box>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <dx-data-grid
+      id="gridContainer"
+      [dataSource]="results"
+      keyExpr="id"
+      [showBorders]="true"
+      [allowColumnReordering]="true"
+      [allowColumnResizing]="true"
+      [columnResizingMode]="'nextColumn'">
+      <dxo-pager
+        [visible]="true"
+        [showInfo]="true"
+        [showPageSizeSelector]="true"
+        [showNavigationButtons]="true"
+        [allowedPageSizes]="[5, 10, 15, 20]"
+      >
+      </dxo-pager>
+      <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+      <dxo-paging [enabled]="true" [pageSize]="10"></dxo-paging>
+      <dxo-editing
+        [allowUpdating]="false"
+        [allowAdding]="false"
+        [useIcons]="false"
+        [allowDeleting]="false">
+      </dxo-editing>
+      <dxo-export [enabled]="true" title="Export des notes"></dxo-export>
+      <dxi-column caption="" [width]="30" cellTemplate="selcol">
+        <div *dxTemplate="let val of 'selcol'">
+          <span class="dx-icon dx-icon-tags"></span>
+        </div>
+      </dxi-column>
+      <dxi-column dataField="type" [width]="100" [allowFiltering]="false" caption=""></dxi-column>
+      <dxi-column dataField="n_table" [width]="100" [allowFiltering]="true" caption="N°Exam."></dxi-column>
+      <dxi-column dataField="uid" [allowEditing]="true" caption="Candidat" [allowFiltering]="false" cellTemplate="userTemplate">
+        <div *dxTemplate="let uid of 'userTemplate'">
+          <span>{{ uid.value | user | async }}</span>
+        </div>
+      </dxi-column>
+      <dxi-column dataField="serial" [width]="100" [allowFiltering]="true" caption="Série"></dxi-column>
+      <dxi-column dataField="center" [allowFiltering]="true" caption="Centre"></dxi-column>
+      <dxi-column dataField="scenter" [allowFiltering]="true" caption="s/centre"></dxi-column>
+      <dxi-column dataField="mention" [width]="150" [allowFiltering]="false"  caption="Mention"></dxi-column>
+      <dxi-column dataField="decision" [width]="150" [allowFiltering]="false"  caption="Décision"></dxi-column>
+      <dxi-column dataField="uid" cellTemplate="loopTemplate" [allowFiltering]="false" caption="" [width]="70">
+        <div class="loop-candidate" *dxTemplate="let uid of 'loopTemplate'">
+          <a class="deal-details" title="Détail" [routerLink]="['', {outlets:{dashboard:['shutters','rn', 'list', uid.value]}}]" target="_blank"><span class="dx-icon-search"></span></a>
+        </div>
+      </dxi-column>
+    </dx-data-grid>
+  </div>
+</div>

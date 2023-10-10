@@ -1,0 +1,19 @@
+.results {
+  padding: 20px;
+  background-color: var(--inc-white);
+  .navbar {
+    padding-left: 0 !important;
+    .dx-field-value {
+      width: 250px;
+    }
+  }
+  .loop-candidate {
+    padding-top: 2px;
+    text-align: center;
+    a {
+      span {
+        font-size: 16px;
+      }
+    }
+  }
+}

@@ -1,0 +1,96 @@
+.sidebar-menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 !important;
+  #navbarVerticalCollapse {
+    padding-left: 47px;
+    .navbar-vertical-content-left {
+      position: absolute;
+      top: 0;
+      left: 55px;
+      right: 6px;
+      bottom: 0;
+      padding-left: 10px;
+      background-color: var(--inc-white);
+      box-shadow: 0px 4px 10px 0 var(--inc-gray-300);
+      ul {
+        position: relative;
+        li {
+          position: relative;
+          div.list-menu {
+            a {
+              padding: 0;
+              margin-left: 0;
+              color: var(--inc-gray-500);
+              font-family: "system-ui";
+              .align-items-center {
+                position: relative;
+                height: 38px;
+              }
+            }
+            .active {
+              color: var(--inc-primary-500);
+              span.image {
+                background-color: var(--inc-primary);
+              }
+            }
+
+            span.image {
+              position: absolute;
+              width: 48px;
+              top: 0;
+              left: -62px;
+              bottom: 0;
+              display: flex;
+              img {
+                margin: auto;
+                width: 18px;
+              }
+            }
+
+            .student-picture {
+              padding-left: 5px;
+
+              img {
+                width: 24px;
+              }
+            }
+          }
+        }
+      }
+
+      .dx-icon {
+        position: absolute;
+        top: 15px;
+        right: 8px;
+        font-size: 20px;
+        display: block;
+        cursor: pointer;
+      }
+    }
+  }
+
+  h6, h5 {
+    margin: 17px 0 0;
+    font-weight: 600;
+    color: var(--inc-gray-300);
+    font-family: inherit;
+    span {
+      color: var(--inc-primary-500);
+      font-size: 0.7rem;
+      font-weight: lighter;
+    }
+  }
+  .navbar-vertical-content {
+    padding: 0;
+  }
+  .navbar-vertical-footer {
+
+  }
+  hr {
+    width: 67%;
+    border-top: 1px solid var(--inc-gray-100);
+  }
+}

@@ -1,0 +1,112 @@
+.users-list {
+  border: solid 1px transparent;
+  border-radius: 5px;
+  background-color: var(--inc-white);
+  -webkit-box-shadow: 0px 4px 10px 0 var(--inc-gray-300);
+  .navbar-light {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    form {
+      position: relative;
+      margin-left: -14px;
+      width: 331px;
+      input {
+        width: 398px;
+        font-family: "system-ui";
+        font-weight: 100;
+      }
+      button {
+        position: absolute;
+        right: 9px;
+        border: 0;
+        background-color: unset;
+        color: #dddddd;
+      }
+    }
+  }
+  table {
+    position: relative;
+    thead {
+      display: table-header-group;
+      vertical-align: middle;
+      text-transform: uppercase;
+      color: #C2C3C3;
+      background-color: #f6f6f6;
+      th {
+        font-family: "system-ui";
+        font-weight: 100;
+        border: 0;
+      }
+    }
+    tbody {
+      tr {
+        display: table-row;
+        vertical-align: inherit;
+        td {
+          font-family: "system-ui";
+          font-weight: 100;
+          padding: 4px;
+          padding-top: 0;
+          border-bottom: solid 0.5px var(--inc-gray-200);
+          color: #a4a5a5;
+          vertical-align: middle;
+          .div-block {
+            font-family: "system-ui";
+            font-weight: 100;
+          }
+          img {
+            margin-top: 8px;
+            margin-left: 8px;
+            width: 40px;
+            height: 40px;
+          }
+          a {
+            padding: 4px 8px 0px 5px;
+            margin: 5px;
+            border-radius: 4px;
+            height: 30px;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+          .delete {
+            background-color: var(--inc-warning-soft);
+            color: var(--inc-warning);
+          }
+          .edit {
+            background-color: #EAF9FA;
+            color: #17A589;
+          }
+          .deal-details {
+            background-color: var(--inc-info-600);
+            color: var(--inc-white);
+          }
+        }
+        .options-class {
+          img {
+            margin: -2px 5px 0 0;
+            width: 13px;
+            height: 15px;
+            cursor: pointer;
+          }
+          a{
+            float: right;
+          }
+        }
+      }
+    }
+    tfoot {
+      display: block;
+      height: 34px;
+      .pagination {
+        position: absolute;
+        right: 0;
+        ::ng-deep .ngx-pagination {
+          .current {
+            background-color: var(--inc-primary-500);
+          }
+        }
+      }
+    }
+  }
+}

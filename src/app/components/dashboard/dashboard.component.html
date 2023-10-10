@@ -1,0 +1,12 @@
+<main role="main"  [ngClass]="dashboard.md + ' ' + dashboard.sm + ' ' + dashboard.lg">
+  <div class="col-content col-content-left" id="col-content-left">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="col-content col-content-right">
+    <app-head></app-head>
+    <div class="main-dashboard">
+      <app-default *ngIf="show_dashbord"></app-default>
+      <router-outlet name="dashboard"></router-outlet>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,16 @@
+.rn-block {
+  padding: 0.4rem;
+  .dx-form {
+    background-color: var(--inc-white);
+    padding: 30px;
+    border-radius: 5px;
+    margin: 0;
+    .pdf-view {
+      margin-top: -11px;
+    }
+  }
+  h4 {
+    font-family: "system-ui";
+    font-weight: 100;
+  }
+}

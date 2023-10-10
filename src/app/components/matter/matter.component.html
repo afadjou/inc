@@ -1,0 +1,67 @@
+<div class="tab-content-class">
+  <h4>Matières</h4><hr/>
+  <div class="container-class">
+    <div class="date-tasks-class">
+      <span class="fa fa-calendar-check"></span>Toutes disciplines confondues. <strong></strong>
+    </div>
+    <dx-data-grid
+      id="gridContainer"
+      [dataSource]="matters"
+      keyExpr="mid"
+      [showBorders]="true"
+      [allowColumnReordering]="true"
+      [allowColumnResizing]="true"
+      [columnResizingMode]="'nextColumn'"
+      (onRowUpdating)="onRowUpdating($event)"
+      (onRowInserting)="onRowInserting($event)"
+      (onRowRemoving)="onRowRemove($event)"
+      (onCellPrepared)="onCellPrepared($event)"
+      (onToolbarPreparing)="alterDataGriOperation($event)">
+      <dxo-pager
+        [visible]="true"
+        [showInfo]="true"
+        [showPageSizeSelector]="true"
+        [showNavigationButtons]="true"
+        [allowedPageSizes]="[5, 10, 15, 20]"
+      >
+      </dxo-pager>
+      <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+      <dxo-column-chooser [enabled]="true" mode="select" [allowSearch]="true" [height]="400" [width]="350"></dxo-column-chooser>
+      <dxo-export [enabled]="true" title="Export des modules"></dxo-export>
+      <dxo-paging [enabled]="true" [pageSize]="10"></dxo-paging>
+      <dxo-editing
+        mode="row"
+        [allowUpdating]="true"
+        [allowAdding]="true"
+        [useIcons]="true"
+        [selectTextOnEditStart]="true"
+        [allowDeleting]="true">
+      </dxo-editing>
+      <dxi-column dataField="mid" [width]="100" [allowFiltering]="false" caption="N° CODE">
+        <dxi-validation-rule type="required" message="Le champs code est obligatoire"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="label" [allowSorting]="true" caption="LIBELLE">
+        <dxo-lookup [dataSource]="labels" valueExpr="id" displayExpr="label"></dxo-lookup>
+        <dxi-validation-rule type="required" message="Le libellé est obligatoire"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="serial" cellTemplate="" [width]="160" [allowSorting]="true" caption="SERIE">
+        <dxo-lookup [dataSource]="serials" valueExpr="id" displayExpr="label"></dxo-lookup>
+        <dxi-validation-rule type="required" message="Le série est obligatoire"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="coef" [width]="80" [allowFiltering]="false" caption="COEF.">
+        <dxi-validation-rule type="required" message="Le Pondération est obligatoire"></dxi-validation-rule>
+        <dxi-validation-rule type="numeric"></dxi-validation-rule>
+      </dxi-column>
+      <dxi-column dataField="author" [allowEditing]="false" caption="Auteur" [allowFiltering]="false" width="180" cellTemplate="userTemplate">
+        <div *dxTemplate="let uid of 'userTemplate'">
+          <span>{{ uid.value | user | async }}</span>
+        </div>
+      </dxi-column>
+      <dxi-column dataField="date" [allowEditing]="false" caption="Date" cellTemplate="dateTemplate" width="120" [allowFiltering]="false">
+        <div *dxTemplate="let dte of 'dateTemplate'">
+          <span>{{ dte.value | todate | datestring }}</span>
+        </div>
+      </dxi-column>
+    </dx-data-grid>
+  </div>
+</div>

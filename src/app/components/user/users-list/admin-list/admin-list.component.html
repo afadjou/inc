@@ -1,0 +1,5 @@
+<div class="users-contents">
+  <h4>Liste des administrateurs</h4><hr/>
+  <app-tabs [all_active_class]="''" [admin_active_class]="'active'" [others_active_class]="''"></app-tabs>
+  <app-paginate-table [list]="administrators" [searchTerms]="searchTerms"></app-paginate-table>
+</div>

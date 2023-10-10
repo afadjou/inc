@@ -1,0 +1,15 @@
+body.dx-theme-generic-typography {
+  background-color: #F5F6FA;
+  font-weight: 500;
+  color: var(--inc-gray-300);
+}
+//// Base
+@import "assets/themes/scss/base/variables";
+//@import "./app/themes/scss/base/fonts";
+@import "assets/themes/scss/base/main";
+@import "assets/themes/scss/base/search";
+@import "assets/themes/scss/base/menu";
+@import "assets/themes/scss/base/grid";
+//
+//// Components
+@import "assets/themes/scss/component/header";

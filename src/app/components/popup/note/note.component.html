@@ -1,0 +1,35 @@
+<dx-data-grid
+  [dataSource]="notes"
+  id="grid-container-row"
+  keyExpr="id"
+  (onRowInserted)="onRowInserted($event)"
+  (onRowUpdated)="onRowUpdated($event)"
+  (onRowRemoved)="onRowRemoved($event)"
+  (onToolbarPreparing)="alterDataGriOperation($event)"
+  [showBorders]="true" [ngClass]="'dx-template-container'">
+  <dxo-editing
+    mode="cell"
+    [allowUpdating]="true"
+    [allowAdding]="true"
+    [useIcons]="true"
+    [allowDeleting]="true">
+  </dxo-editing>
+  <dxo-pager
+    [visible]="true"
+    [showInfo]="true"
+    [showPageSizeSelector]="true"
+    [showNavigationButtons]="true"
+    [allowedPageSizes]="[7, 10, 15, 20]"
+  >
+  </dxo-pager>
+  <dxo-paging [enabled]="true" [pageSize]="7"></dxo-paging>
+  <dxo-export [enabled]="true" title="Export des notes"></dxo-export>
+  <dxi-column dataField="matter" caption="Module">
+    <dxo-lookup [dataSource]="labels" valueExpr="id" displayExpr="label"></dxo-lookup>
+    <dxi-validation-rule type="required"></dxi-validation-rule>
+  </dxi-column>
+  <dxi-column dataField="note" caption="Note(/20)" [width]="120">
+    <dxi-validation-rule type="numeric" message="Ce champ ne peut prendre que des numériques"></dxi-validation-rule>
+  </dxi-column>
+</dx-data-grid>
+

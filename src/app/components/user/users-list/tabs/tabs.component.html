@@ -1,0 +1,13 @@
+<nav class="users-list-ul" xmlns="http://www.w3.org/1999/html">
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link {{ all_active_class }}" id="nav-all-members-tab" data-toggle="tab" [routerLink]="['', {outlets:{dashboard:['users','list']}}]" aria-controls="nav-all-members" aria-selected="true">
+      Tous les membres
+    </a>
+    <a class="nav-item nav-link {{ admin_active_class }}" id="nav-administrators-tab" data-toggle="tab" [routerLink]="['', {outlets:{dashboard:['users','list', 'admin']}}]" aria-controls="nav-administrators" aria-selected="true">
+      Administrateurs
+    </a>
+    <a class="nav-item nav-link {{ others_active_class }}" id="nav-subscribes-tab" data-toggle="tab" [routerLink]="['', {outlets:{dashboard:['users','list', 'others']}}]" aria-controls="nav-subscribes" aria-selected="true">
+      Autres
+    </a>
+  </div>
+</nav>

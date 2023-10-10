@@ -1,0 +1,29 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <img src="../../../../assets/images/logos/logo_inc_green_text.png" alt="User Icon" />
+      </div>
+
+      <!-- Login Form -->
+      <form class="form-class">
+        <input type="text" id="login" class="fadeIn second" name="login" autofocus placeholder="E-mail" #userName required>
+        <input type="password" id="password" class="fadeIn third" name="login" placeholder="Mot de passe" #userPassword required>
+        <input type="button" class="fadeIn fourth" value="Connexion" (click)="authService.signIn(userName.value, userPassword.value)">
+      </form>
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <button type="button" class="btn googleBtn" (click)="authService.googleAuth()">
+          <i class="fa fa-google-plus"></i> Se connecter avec Google
+        </button>
+        <button type="button" class="btn msmBtn" (click)="authService.msmAuth()">
+          <i class="fa fa-windows"></i> Se connecter avec Microsoft
+        </button>
+        <br/><a routerLink="/user/forgot-password">Mot de passe oublié ?</a>
+      </div>
+
+    </div>
+  </div>
+
