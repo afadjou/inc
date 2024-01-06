@@ -1,84 +1,6 @@
 <nav class="navbar navbar-top navbar-expand" id="navbarDefault">
   <div class="collapse navbar-collapse justify-content-between">
-    <div class="search-box navbar-top-search-box d-none d-lg-block" data-list="{&quot;valueNames&quot;:[&quot;title&quot;]}" style="width:25rem;">
-      <span class="dx-icon dx-icon-chevrondoubleright" id="chevrondoubleright" (click)="onClipse()"></span>
-      <form class="position-relative" data-bs-toggle="search" data-bs-display="static" aria-expanded="false">
-        <input class="form-control search-input fuzzy-search form-control-sm" type="search" placeholder="Search..." aria-label="Search">
-        <img src="assets/images/header/search.svg"/>
-      </form>
-      <div class="btn-close position-absolute end-0 top-50 translate-middle cursor-pointer shadow-none" data-bs-dismiss="search">
-        <button class="btn btn-link btn-close-falcon p-0" aria-label="Close"></button>
-      </div>
-      <div class="dropdown-menu border border-300 font-base start-0 py-0 overflow-hidden w-100">
-        <div class="scrollbar-overlay" style="max-height: 30rem;" data-simplebar="init">
-          <div class="simplebar-wrapper" style="margin: 0;">
-            <div class="simplebar-height-auto-observer-wrapper">
-              <div class="simplebar-height-auto-observer"></div>
-            </div>
-            <div class="simplebar-mask">
-              <div class="simplebar-offset" style="right: 0; bottom: 0;">
-                <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;">
-                  <div class="simplebar-content" style="padding: 0;">
-                    <div class="list pb-3">
-                      <h6 class="dropdown-header text-1000 fs--2 py-2">24 <span class="text-500">results</span></h6>
-                      <hr class="text-200 my-0">
-                      <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Recently Searched </h6>
-                      <div class="py-2">
-                        <a class="dropdown-item" href="#">
-                          <div class="d-flex align-items-center">
-                            <div class="fw-normal text-1000 title">
-                              <svg class="svg-inline--fa fa-clock-rotate-left" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock-rotate-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;">
-                                <g transform="translate(256 256)">
-                                  <g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)">
-                                    <path fill="currentColor" d="M256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C201.7 512 151.2 495 109.7 466.1C95.2 455.1 91.64 436 101.8 421.5C111.9 407 131.8 403.5 146.3 413.6C177.4 435.3 215.2 448 256 448C362 448 448 362 448 256C448 149.1 362 64 256 64C202.1 64 155 85.46 120.2 120.2L151 151C166.1 166.1 155.4 192 134.1 192H24C10.75 192 0 181.3 0 168V57.94C0 36.56 25.85 25.85 40.97 40.97L74.98 74.98C121.3 28.69 185.3 0 255.1 0L256 0zM256 128C269.3 128 280 138.7 280 152V246.1L344.1 311C354.3 320.4 354.3 335.6 344.1 344.1C335.6 354.3 320.4 354.3 311 344.1L239 272.1C234.5 268.5 232 262.4 232 256V152C232 138.7 242.7 128 256 128V128z" transform="translate(-256 -256)"></path>
-                                  </g>
-                                </g>
-                              </svg><!-- <span class="fa-solid fa-clock-rotate-left" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com --> Store Macbook</div>
-                          </div>
-                        </a>
-                        <a class="dropdown-item" href="#">
-                          <div class="d-flex align-items-center">
-                            <div class="fw-normal text-1000 title"> <svg class="svg-inline--fa fa-clock-rotate-left" data-fa-transform="shrink-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clock-rotate-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="" style="transform-origin: 0.5em 0.5em;"><g transform="translate(256 256)"><g transform="translate(0, 0)  scale(0.875, 0.875)  rotate(0 0 0)"><path fill="currentColor" d="M256 0C397.4 0 512 114.6 512 256C512 397.4 397.4 512 256 512C201.7 512 151.2 495 109.7 466.1C95.2 455.1 91.64 436 101.8 421.5C111.9 407 131.8 403.5 146.3 413.6C177.4 435.3 215.2 448 256 448C362 448 448 362 448 256C448 149.1 362 64 256 64C202.1 64 155 85.46 120.2 120.2L151 151C166.1 166.1 155.4 192 134.1 192H24C10.75 192 0 181.3 0 168V57.94C0 36.56 25.85 25.85 40.97 40.97L74.98 74.98C121.3 28.69 185.3 0 255.1 0L256 0zM256 128C269.3 128 280 138.7 280 152V246.1L344.1 311C354.3 320.4 354.3 335.6 344.1 344.1C335.6 354.3 320.4 354.3 311 344.1L239 272.1C234.5 268.5 232 262.4 232 256V152C232 138.7 242.7 128 256 128V128z" transform="translate(-256 -256)"></path></g></g></svg><!-- <span class="fa-solid fa-clock-rotate-left" data-fa-transform="shrink-2"></span> Font Awesome fontawesome.com --> MacBook Air - 13″</div>
-                          </div>
-                        </a>
-                      </div>
-                      <hr class="text-200 my-0">
-                      <h6 class="dropdown-header text-1000 fs--1 border-bottom border-200 py-2 lh-sm">Products</h6>
-                      <div class="py-2">
-                        <a class="dropdown-item py-2 d-flex align-items-center" href="#">
-                          <div class="file-thumbnail me-2">
-                            <img class="h-100 w-100 fit-cover rounded-3" src="#" alt="">
-                          </div>
-                          <div class="flex-1">
-                            <h6 class="mb-0 text-1000 title">MacBook Air - 13″</h6>
-                              <p class="fs--2 mb-0 d-flex text-700"><span class="fw-medium text-600">8GB Memory - 1.6GHz - 128GB Storage</span></p>
-                          </div>
-                        </a>
-                        <a class="dropdown-item py-2 d-flex align-items-center" href="#">
-                          <div class="file-thumbnail me-2"><img class="img-fluid" src="#" alt=""></div>
-                          <div class="flex-1">
-                            <h6 class="mb-0 text-1000 title">MacBook Pro - 13″</h6>
-                              <p class="fs--2 mb-0 d-flex text-700"><span class="fw-medium text-600 ms-2">30 Sep at 12:30 PM</span></p>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="simplebar-placeholder" style="width: 0; height: 0;"></div>
-          </div>
-          <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
-            <div class="simplebar-scrollbar" style="width: 0; display: none;"></div>
-          </div>
-          <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
-            <div class="simplebar-scrollbar" style="height: 0; display: none;"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <ul class="navbar-nav navbar-nav-icons flex-row">
+   <ul class="navbar-nav navbar-nav-icons flex-row">
       <!--
       <li class="nav-item dropdown" *ngIf="subscribe">
         <a class="nav-link" href="#" data-toggle="collapse" role="button" data-target="#dropdown-menu-notify" aria-haspopup="true" aria-expanded="false" data-bs-auto-close="outside">
@@ -191,7 +113,7 @@
       <li class="nav-item dropdown">
         <a class="nav-link lh-1 pe-0" href="#!" role="button" data-toggle="collapse" data-target="#dropdown-profile" aria-haspopup="true" ata-bs-auto-close="outside" aria-expanded="false">
           <div class="avatar avatar-l ">
-              <img *ngIf="currentUser" class="rounded-circle" src="{{ currentUser.photoURL }}" alt=""/>
+              <img *ngIf="currentUser" class="rounded-circle" src="{{ currentUser.image.url }}" alt=""/>
           </div>
         </a>
         <div id="dropdown-profile" (click)="closePanel($event)" class="dropdown-menu dropdown-menu-end navbar-dropdown-caret py-0 dropdown-profile shadow border border-300" aria-labelledby="navbarDropdownUser">
@@ -199,9 +121,9 @@
             <div class="card-body p-0">
               <div class="text-center pt-4 pb-3">
                 <div class="avatar avatar-xl ">
-                  <img *ngIf="currentUser" class="rounded-circle" src="{{ currentUser.photoURL }}" alt="">
+                  <img *ngIf="currentUser" class="rounded-circle" src="{{ currentUser.image.url }}" alt="">
                 </div>
-                <h5 *ngIf="currentUser" class="mt-2 text-black">{{ currentUser.firstName }}</h5>
+                <h5 *ngIf="currentUser" class="mt-2 text-black">{{ currentUser.identite.prenom }}</h5>
               </div>
             </div>
             <div class="overflow-auto scrollbar">
@@ -210,10 +132,10 @@
               </ul>
             </div>
             <div class="card-footer p-0 border-top">
-              <ul *ngIf="currentUser?.role=='ADMIN_ROLE'" class="nav d-flex flex-column my-3">
+              <ul *ngIf="currentUser?.role=='administrator'" class="nav d-flex flex-column my-3">
                 <li class="nav-item"><a class="nav-link px-3" [routerLink]="['', {outlets:{dashboard:['user','sign-up']}}]"><img src="assets/images/header/userplus.svg"/><span class="text-black">Créer un compte</span></a></li>
               </ul>
-              <hr  *ngIf="currentUser?.role=='ADMIN_ROLE'">
+              <hr  *ngIf="currentUser?.role=='administrator'">
               <ul class="nav d-flex flex-column my-3">
                 <li class="nav-item">
                   <a class="btn btn-phoenix-secondary d-flex flex-center w-100" (click)="authService.signOut()"><img src="assets/images/header/sign_out.svg" /><span class="text-black">Déconnexion</span></a>

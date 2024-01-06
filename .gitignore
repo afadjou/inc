@@ -46,3 +46,11 @@ Thumbs.db
 
 # public site
 public/*
+drupal/core/*
+drupal/vendor/
+drupal/composer/*
+drupal/modules/contrib/*
+drupal/profiles/*
+drupal/vendor/*
+drupal/sites/default/*
+

@@ -21,11 +21,13 @@ export class UsersListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
     this.uq.fetchAll().valueChanges().subscribe(
       (users) => {
         this.users = users;
       }
     );
+    */
     const shutter: string = localStorage.getItem('shutter_id') ?? '';
     this.subject.emitShutter(shutter);
   }

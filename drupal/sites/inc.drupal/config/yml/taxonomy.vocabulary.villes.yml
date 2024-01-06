@@ -1,0 +1,8 @@
+uuid: 1108edd4-4d05-4247-860b-c5f6b18b75cb
+langcode: fr
+status: true
+dependencies: {  }
+name: Villes
+vid: villes
+description: ''
+weight: 0

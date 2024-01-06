@@ -37,44 +37,7 @@ export class HeadComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let sessionUser = JSON.parse(localStorage.getItem('user')!);
-    if (sessionUser) {
-      this.userQuery.select(sessionUser)
-        .valueChanges()
-        .subscribe(
-          (users) => {
-            if (users[0]) {
-              this.currentUser = users.at(0);
-              if (this.currentUser) {
-                this.connectedRoles = this.currentUser.roles;
-                if (this.currentUser.pso) {
-                  this.subscribe = true;
-                  let actives = this.notifyQuery.select();
-                  if (actives) {
-                    actives.valueChanges().subscribe((actives) => {
-                      if (actives) {
-                        this.actives = actives;
-                      }
-                    });
-                  }
-
-                  // Compte les les notifications non lues sans limites.
-                  let noCheckedNotifications = this.notifyQuery.infosNoChecked();
-                  if (noCheckedNotifications) {
-                    noCheckedNotifications.valueChanges().subscribe(
-                      (list) => {
-                        this.noCheckedNotifications = list;
-                      }
-                    );
-                  }
-                } else {
-                  this.subscribe = false;
-                }
-              }
-            }
-          }
-        );
-    }
+    this.currentUser = JSON.parse(localStorage.getItem('user')!);
   }
 
   /**

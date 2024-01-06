@@ -1,0 +1,23 @@
+uuid: 92c11937-a482-439d-a555-108138f66c66
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_adresse_active
+    - paragraphs.paragraphs_type.adresses
+id: paragraph.adresses.field_adresse_active
+field_name: field_adresse_active
+entity_type: paragraph
+bundle: adresses
+label: 'Est active'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

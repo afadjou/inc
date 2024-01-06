@@ -1,0 +1,8 @@
+uuid: d1941c0b-e523-4df3-adfb-74d89ed2a675
+langcode: fr
+status: true
+dependencies: {  }
+name: Matières
+vid: matieres
+description: 'Labels des matières'
+weight: 0

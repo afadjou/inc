@@ -1,0 +1,21 @@
+uuid: 867b2650-486d-4e3b-8be3-565e06614efe
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_identite_lieu_naissance
+field_name: field_identite_lieu_naissance
+entity_type: paragraph
+type: string
+settings:
+  max_length: 100
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,11 @@
+uuid: 9eab959a-fdac-44f0-9d8b-2a28313411a7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.mentions
+id: taxonomy_term.mentions
+target_entity_type_id: taxonomy_term
+target_bundle: mentions
+default_langcode: site_default
+language_alterable: false

@@ -1,41 +1,113 @@
 <div class="users-list">
-  <nav class="navbar navbar-light">
-    <form [formGroup]="searchForm" (submit)="onSearch($event)" class="form-inline">
-      <input formControlName="searchField" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button type="submit"><span class="fa fa-search"></span></button>
-    </form>
-  </nav>
   <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane fade show active" id="nav-all-members" role="tabpanel" aria-labelledby="nav-all-members">
+      <dx-data-grid
+        id="gridContainer"
+        [dataSource]="list"
+        keyExpr="id"
+        [showBorders]="true"
+        [columnResizingMode]="'nextColumn'"
+        [hoverStateEnabled]="true"
+        (onRowInserted)="$event.component.navigateToRow($event.key)">
+        <dxo-paging [enabled]="true" [pageSize]="10"></dxo-paging>
+        <dxo-pager
+          [showPageSizeSelector]="true"
+          [showInfo]="true"></dxo-pager>
+        <dxo-search-panel [visible]="true" [width]="300"></dxo-search-panel>
+        <dxo-editing
+          mode="row"
+          [allowUpdating]="false"
+          [allowAdding]="false"
+          [allowDeleting]="false">
+        </dxo-editing>
+        <dxi-column dataField="image" caption="" cssClass="responsive-image" [allowSorting]="true" cellTemplate="imageTemplate">
+          <div *dxTemplate="let cell of 'imageTemplate'">
+            <div class="form-profile">
+              <img src="{{ cell.data.image }}" class="rounded-circle picture" *ngIf="cell.data.image">
+              <img src="/assets/images/user-2.png" class="rounded-circle picture" *ngIf="!cell.data.image">
+            </div>
+          </div>
+        </dxi-column>
+        <dxi-column dataField="identite" caption="Nom et prénom" [allowSorting]="true" cssClass="responsive-name" cellTemplate="nameTemplate">
+          <div *dxTemplate="let cell of 'nameTemplate'">
+            <div class="div-block-td">
+              <span>
+                {{ cell.data.prenom + ' ' + cell.data.nomUsage }}
+              </span>
+            </div>
+          </div>
+        </dxi-column>
+        <dxi-column dataField="mail" caption="Email" [allowSorting]="false" cellTemplate="mailTemplate">
+          <div *dxTemplate="let cell of 'mailTemplate'">
+            <td class="div-block-td">
+              <div class="div-block">
+                {{ cell.data.mail }}
+              </div>
+            </td>
+          </div>
+        </dxi-column>
+        <dxi-column dataField="contact" caption="Mobile" [allowSorting]="false" cssClass="responsive-column" cellTemplate="contactTemplate">
+          <div *dxTemplate="let cell of 'contactTemplate'">
+            <td class="div-block-td">
+              <div class="div-block">
+                {{ cell.data.telephone }}
+              </div>
+            </td>
+          </div>
+        </dxi-column>
+        <dxi-column *ngIf="active_role == 'etudiant'" dataField="identite" caption="CNE" cssClass="responsive-column" [allowSorting]="false" cellTemplate="cneTemplate">
+          <div *dxTemplate="let cell of 'cneTemplate'">
+            <td class="div-block-td">
+              <div class="div-block">
+                {{ cell.data.nie }}
+              </div>
+            </td>
+          </div>
+        </dxi-column>
+        <dxi-column dataField="uid" caption="" [minWidth]="100" cssClass="dx-actions" cellTemplate="actionTemplate">
+          <div *dxTemplate="let cell of 'actionTemplate'">
+            <td class="div-block-td">
+              <div class="div-block">
+                <div class="options-class">
+                  <a class="deal-details" title="Relevés de notes" [routerLink]="['', {outlets:{dashboard:['shutters','rn', 'list', cell.data.uid]}}]" *ngIf="active_role=='etudiant' && shutter=='examens'"><img src="/assets/images/op/editdoc.svg"/><span>Relevés</span></a>
+                  <a class="edit" [routerLink]="['', {outlets:{dashboard:['users','detail', cell.data.uid]}}]" title="Modifier la fiche utilisateur"><img src="/assets/images/op/edit.svg"/><span>Editer</span></a>
+                  <a class="delete" (click)="onUserDelete(cell.data.uid)" title="Supprimer la fiche utilisateur"><img src="/assets/images/op/delete.svg"/><span>Supprimer</span></a>
+                </div>
+              </div>
+            </td>
+          </div>
+        </dxi-column>
+      </dx-data-grid>
+
+      <!--
       <table class="table table-hover members-table middle-align">
         <thead>
           <th></th>
           <th>Nom et rôle</th>
           <th>Email</th>
           <th>Mobile</th>
-          <th *ngIf="active_role == 'STUDENT_ROLE'">CNE</th>
+          <th *ngIf="active_role == 'etudiant'">CNE</th>
           <th></th>
         </thead>
         <tbody>
-          <tr *ngFor="let u of list | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index"> <!---->
+          <tr *ngFor="let u of list | paginate: { itemsPerPage: tableSize, currentPage: page, totalItems: count }; let i = index">
             <td class="form-profile">
-              <img src="{{ u.photoURL }}" alt="{{ u.name }}" class="rounded-circle picture" *ngIf="u?.photoURL">
-              <img src="/assets/images/user-2.png" alt="{{ u.name }}" class="rounded-circle picture" *ngIf="!u.photoURL">
+              <img src="{{ u.image }}" alt="{{ u.nomUsage }}" class="rounded-circle picture" *ngIf="u?.image">
+              <img src="/assets/images/user-2.png" alt="{{ u.nomUsage }}" class="rounded-circle picture" *ngIf="!u.image">
             </td>
-            <!--<td>{{ u.uid }}</td>-->
             <td class="div-block-td">
               <div class="div-block">
-                {{ u.firstName + ' ' + u.name }}<br/>
+                {{ u.prenom + ' ' + u.nomUsage }}<br/>
                 <span>{{ u.role }}</span>
               </div>
             </td>
-            <td>{{ u.email }}</td>
-            <td>{{ u.phoneNumber }}</td>
-            <td *ngIf="active_role == 'STUDENT_ROLE'">{{ u.cne }}</td>
+            <td>{{ u.mail }}</td>
+            <td>{{ u.telephone }}</td>
+            <td *ngIf="active_role == 'etudiant'">{{ u.nie }}</td>
             <td class="options-class">
               <a class="delete" (click)="onUserDelete(u.uid)" title="Supprimer la fiche utilisateur"><img src="/assets/images/op/delete.svg"/>Supprimer</a>
               <a class="edit" [routerLink]="['', {outlets:{dashboard:['users','detail', u.uid]}}]" title="Modifier la fiche utilisateur"><img src="/assets/images/op/edit.svg"/>Editer</a>
-              <a class="deal-details" title="Relevés de notes" [routerLink]="['', {outlets:{dashboard:['shutters','rn', 'list', u.uid]}}]" *ngIf="u.role=='STUDENT_ROLE' && shutter=='examens'"><img src="/assets/images/op/editdoc.svg"/>Relevés</a>
+              <a class="deal-details" title="Relevés de notes" [routerLink]="['', {outlets:{dashboard:['shutters','rn', 'list', u.uid]}}]" *ngIf="u.role=='etudiant' && shutter=='examens'"><img src="/assets/images/op/editdoc.svg"/>Relevés</a>
             </td>
           </tr>
         </tbody>
@@ -49,6 +121,7 @@
           </nav>
         </tfoot>
       </table>
+      !-->
     </div>
   </div>
 </div>

@@ -13,7 +13,7 @@ import {AuthService} from "../../services/auth.service";
 @Injectable()
 export class PaginateTableComponent implements OnInit {
 
-  @Input() list: any[] = [];
+  @Input() list: any;
   @Input() searchTerms = [''];
   active_role: string | undefined;
   page = 1;
@@ -33,21 +33,6 @@ export class PaginateTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.active_role = this.searchTerms.at(0);
-    this.uq.fetchAll().valueChanges().subscribe(
-      (users: any[]) => {
-        let l = users.filter(
-          (u: any) => {
-            if (this.searchTerms.includes(u.role)) {
-              return true;
-            } else {
-              return false;
-            }
-          }
-        );
-
-        localStorage.setItem('init_list', JSON.stringify(l));
-      }
-    );
     this.initForm();
   }
   initForm(): void {

@@ -1,0 +1,23 @@
+uuid: 78d158c2-cc66-49c9-b094-797a876a8dcb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_note_note
+    - paragraphs.paragraphs_type.paragraph_notes
+id: paragraph.paragraph_notes.field_note_note
+field_name: field_note_note
+entity_type: paragraph
+bundle: paragraph_notes
+label: Note
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 20
+  prefix: ''
+  suffix: /20
+field_type: float

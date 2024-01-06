@@ -1,0 +1,19 @@
+uuid: c1159175-21f8-466d-a765-c0d6693e8fe8
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_adresse_code_postal
+    - paragraphs.paragraphs_type.adresses
+id: paragraph.adresses.field_adresse_code_postal
+field_name: field_adresse_code_postal
+entity_type: paragraph
+bundle: adresses
+label: 'Code postal'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

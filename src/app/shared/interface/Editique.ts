@@ -1,5 +1,4 @@
 import DevExpress from "devextreme";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
 import {base64_encode} from "devextreme/data/utils";
 import {FileService} from "../file/services/file.service";
 import {ListService} from "../tools/list.service";
@@ -39,10 +38,10 @@ export class Editique {
    * @param user
    * @param afs
    */
-  prepare(user: any, afs: AngularFirestore) {
+  prepare(user: any) {
     // Ajout Name/FirstName
-    this.add({ id: 'name', type: 'text', value: user.name });
-    this.add({ id: 'first_name', type: 'text', value: user.firstName });
+    this.add({ id: 'name', type: 'text', value: user.identite.nomUsage });
+    this.add({ id: 'first_name', type: 'text', value: user.identite.prenom });
   }
   /**
    * Ajout un champ dans le flux de données.

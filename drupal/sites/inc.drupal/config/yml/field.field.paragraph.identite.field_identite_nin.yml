@@ -1,0 +1,19 @@
+uuid: c97bf4b6-93ff-4b2d-8c3b-41fac0fc88f0
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_identite_nin
+    - paragraphs.paragraphs_type.identite
+id: paragraph.identite.field_identite_nin
+field_name: field_identite_nin
+entity_type: paragraph
+bundle: identite
+label: 'N°d''Identification Nationale'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

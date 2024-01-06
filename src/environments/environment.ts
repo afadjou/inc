@@ -15,6 +15,11 @@ export const environment = {
     uid: 'cri.test',
     pwd: 'Password2021!'
   },
+  rest: {
+    host: 'http://inc.drupal.local/',
+    uid: 'admin@inc.com',
+    pwd: 'Password@2023'
+  },
   api: {    // api adobe PDF Embed Viewer
     token: '35b4a29c524c4575a86dfef83024e6e2'
   }

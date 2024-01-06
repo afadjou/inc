@@ -1,0 +1,23 @@
+uuid: 4e22c963-81a2-469c-a8dd-aea176658fba
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_releve_session
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+id: paragraph.paragraph_releve_notes.field_releve_session
+field_name: field_releve_session
+entity_type: paragraph
+bundle: paragraph_releve_notes
+label: Séssion
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -9,10 +9,11 @@ import { UserQuery } from 'src/app/shared/query/user.query';
 export class AdminListComponent implements OnInit {
   administrators: any[] = [];
   userSubscribe: any;
-  searchTerms = ['ADMIN_ROLE'];
+  searchTerms = ['administrator'];
   constructor(private uq: UserQuery) { }
 
   ngOnInit(): void {
+    /*
     this.uq.fetchAll().valueChanges().subscribe(
       (users) => {
         this.administrators = users.filter(
@@ -27,6 +28,7 @@ export class AdminListComponent implements OnInit {
          );
       }
     );
+    */
   }
 
 }

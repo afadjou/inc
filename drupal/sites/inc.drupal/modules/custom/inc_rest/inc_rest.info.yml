@@ -1,0 +1,7 @@
+name: 'inc_rest'
+type: module
+description: 'Custom INC API REST'
+core_version_requirement: ^8 || ^9
+package: 'CUSTOM'
+dependencies:
+  - rest

@@ -1,0 +1,29 @@
+uuid: 95630f65-e34d-4c8d-b5b2-66a899de1f17
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_matiere_libelle
+    - paragraphs.paragraphs_type.paragraph_matieres
+    - taxonomy.vocabulary.matieres
+id: paragraph.paragraph_matieres.field_matiere_libelle
+field_name: field_matiere_libelle
+entity_type: paragraph
+bundle: paragraph_matieres
+label: Libellé
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      matieres: matieres
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

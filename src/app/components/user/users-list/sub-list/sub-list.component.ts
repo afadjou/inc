@@ -9,10 +9,11 @@ import { UserQuery } from 'src/app/shared/query/user.query';
 export class SubListComponent implements OnInit {
   subscribers: any[] = [];
   userSubscribe: any;
-  searchTerms = ['STUDENT_ROLE', 'TEACHER_ROLE'];
+  searchTerms = ['etudiant', 'enseignant'];
   constructor(private uq: UserQuery) { }
 
   ngOnInit(): void {
+    /*
     this.uq.fetchAll().valueChanges().subscribe(
       (users) => {
         this.subscribers = users.filter(
@@ -27,5 +28,6 @@ export class SubListComponent implements OnInit {
          );
       }
     );
+    */
   }
 }

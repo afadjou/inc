@@ -1,0 +1,21 @@
+uuid: 114e0dd5-e713-4ca8-b838-be3717abf704
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_identite_nin
+field_name: field_identite_nin
+entity_type: paragraph
+type: string
+settings:
+  max_length: 20
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,10 @@
+uuid: ae13e239-a201-4bf1-8807-eadbba04425c
+langcode: fr
+status: true
+dependencies: {  }
+id: paragraph_notes
+label: Notes
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

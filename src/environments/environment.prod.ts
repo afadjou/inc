@@ -15,7 +15,12 @@ export const environment = {
     uid: 'cri.test',
     pwd: 'Password2021!'
   },
+  rest: {
+    host: 'https://inc.api-cri.fr/',
+    uid: 'admin@inc.com',
+    pwd: 'Password@2023'
+  },
   api: {    // api adobe PDF Embed Viewer
-    token: '6d17f9d7cda54151b8d6a68f27e03ec1'
+    token: '48d9d439ddac4992b209d8cd273f212f'
   }
 };

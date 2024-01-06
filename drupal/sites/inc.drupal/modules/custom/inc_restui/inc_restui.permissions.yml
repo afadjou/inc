@@ -1,0 +1,5 @@
+permission_callbacks:
+  - Drupal\rest\RestPermissions::permissions
+
+restful post default_rest_resource:
+  title: 'Access restfull POST'

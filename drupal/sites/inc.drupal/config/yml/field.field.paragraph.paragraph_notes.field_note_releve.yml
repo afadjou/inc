@@ -1,0 +1,46 @@
+uuid: ac3ab441-be46-4db1-bbe2-a07a90925a60
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_note_releve
+    - paragraphs.paragraphs_type.paragraph_notes
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+  module:
+    - entity_reference_revisions
+id: paragraph.paragraph_notes.field_note_releve
+field_name: field_note_releve
+entity_type: paragraph
+bundle: paragraph_notes
+label: 'Relevé de notes'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      paragraph_releve_notes: paragraph_releve_notes
+    negate: 0
+    target_bundles_drag_drop:
+      adresses:
+        weight: 7
+        enabled: false
+      contact:
+        weight: 8
+        enabled: false
+      identite:
+        weight: 9
+        enabled: false
+      paragraph_matieres:
+        weight: 10
+        enabled: false
+      paragraph_notes:
+        weight: 11
+        enabled: false
+      paragraph_releve_notes:
+        weight: 12
+        enabled: true
+field_type: entity_reference_revisions

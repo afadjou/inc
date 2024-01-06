@@ -1,0 +1,40 @@
+uuid: da3df5d3-7600-46b2-bb79-010e48725f71
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.paragraph_matieres.field_matiere_coef
+    - field.field.paragraph.paragraph_matieres.field_matiere_libelle
+    - field.field.paragraph.paragraph_matieres.field_matiere_serie
+    - paragraphs.paragraphs_type.paragraph_matieres
+id: paragraph.paragraph_matieres.default
+targetEntityType: paragraph
+bundle: paragraph_matieres
+mode: default
+content:
+  field_matiere_coef:
+    type: number_integer
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_matiere_libelle:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_matiere_serie:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

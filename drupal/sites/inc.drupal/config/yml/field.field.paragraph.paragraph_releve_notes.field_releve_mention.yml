@@ -1,0 +1,29 @@
+uuid: 0f9ff3ed-e5bb-4be0-8bff-d5cd60d29969
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_releve_mention
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+    - taxonomy.vocabulary.mentions
+id: paragraph.paragraph_releve_notes.field_releve_mention
+field_name: field_releve_mention
+entity_type: paragraph
+bundle: paragraph_releve_notes
+label: Mention
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      mentions: mentions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -20,7 +20,13 @@ export class PermissionService {
     const permissions: any[] = route.data.roles;
 
     if (permissions && !permissions.includes('*')) {
-      if (auth.role && permissions.includes(auth.role)) {
+      let roles: any[] = [];
+      auth.roles.forEach((role: any) => {
+        if (route.data.roles.includes(role.id)) {
+          roles.push(role.id);
+        }
+      });
+      if (roles.length > 0) {
         return true;
       } else {
         return false;
@@ -44,7 +50,13 @@ export class PermissionService {
       ).at(0);
       if (route) {
         if (route?.data?.roles) {
-          menu.enabled = route.data.roles.includes('*') || route.data.roles.includes(auth.role);
+          let roles: any[] = [];
+          auth.roles.forEach((role: any) => {
+            if (route.data.roles.includes(role.id)) {
+              roles.push(role.id);
+            }
+          });
+          menu.enabled = route.data.roles.includes('*') || roles.length > 0;
         } else {
           menu.enabled = true;
         }

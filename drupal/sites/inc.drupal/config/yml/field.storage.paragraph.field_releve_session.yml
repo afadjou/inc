@@ -1,0 +1,20 @@
+uuid: 159069c1-664c-40a2-9ea4-f466f2f22bba
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_releve_session
+field_name: field_releve_session
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

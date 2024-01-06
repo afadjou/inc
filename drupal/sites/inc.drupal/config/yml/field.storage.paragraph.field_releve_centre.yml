@@ -1,0 +1,20 @@
+uuid: 85d753f0-c883-444e-92a7-db2f6e0ac1f3
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_releve_centre
+field_name: field_releve_centre
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

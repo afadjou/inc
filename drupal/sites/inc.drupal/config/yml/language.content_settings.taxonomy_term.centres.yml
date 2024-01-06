@@ -1,0 +1,11 @@
+uuid: 81bddded-6324-4840-b9ad-7116d5fa9d0f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.centres
+id: taxonomy_term.centres
+target_entity_type_id: taxonomy_term
+target_bundle: centres
+default_langcode: site_default
+language_alterable: false

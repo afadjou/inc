@@ -1,0 +1,8 @@
+uuid: 1bd22262-879b-4444-8fce-d4a7f160d3c6
+langcode: fr
+status: true
+dependencies: {  }
+name: Séries
+vid: series
+description: ''
+weight: 0

@@ -14,7 +14,7 @@ export class RuleService {
    */
   dateEdition(rn: any) {
     const dte = new Date();
-    return rn.deliberation_date ? rn.deliberation_date.toLocaleDateString() : dte.toLocaleDateString();
+    return rn.deliberation_date ? new Date(rn.deliberation_date).toLocaleDateString() : dte.toLocaleDateString();
   }
 
   /**

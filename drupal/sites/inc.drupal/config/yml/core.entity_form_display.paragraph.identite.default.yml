@@ -1,0 +1,84 @@
+uuid: d39e8397-6743-45d7-8bd6-bd3a4c6bce6e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.identite.field_identite_civilite
+    - field.field.paragraph.identite.field_identite_date_naissance
+    - field.field.paragraph.identite.field_identite_lieu_naissance
+    - field.field.paragraph.identite.field_identite_nie
+    - field.field.paragraph.identite.field_identite_nin
+    - field.field.paragraph.identite.field_identite_nom_naissance
+    - field.field.paragraph.identite.field_identite_nom_usage
+    - field.field.paragraph.identite.field_identite_prenom
+    - paragraphs.paragraphs_type.identite
+  module:
+    - datetime
+id: paragraph.identite.default
+targetEntityType: paragraph
+bundle: identite
+mode: default
+content:
+  field_identite_civilite:
+    type: options_select
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_identite_date_naissance:
+    type: datetime_default
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_identite_lieu_naissance:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_identite_nie:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_identite_nin:
+    type: string_textfield
+    weight: 6
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_identite_nom_naissance:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_identite_nom_usage:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_identite_prenom:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

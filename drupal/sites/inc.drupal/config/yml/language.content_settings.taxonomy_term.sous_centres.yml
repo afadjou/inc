@@ -1,0 +1,11 @@
+uuid: 6657c2a5-a366-4b7f-9164-0486de68975e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.sous_centres
+id: taxonomy_term.sous_centres
+target_entity_type_id: taxonomy_term
+target_bundle: sous_centres
+default_langcode: site_default
+language_alterable: false

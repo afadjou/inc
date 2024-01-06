@@ -1,0 +1,29 @@
+uuid: 9d7173d0-cb3d-41f6-bd19-81f8ff1e2572
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_adresse_pays
+    - paragraphs.paragraphs_type.adresses
+    - taxonomy.vocabulary.pays
+id: paragraph.adresses.field_adresse_pays
+field_name: field_adresse_pays
+entity_type: paragraph
+bundle: adresses
+label: Pays
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      pays: pays
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

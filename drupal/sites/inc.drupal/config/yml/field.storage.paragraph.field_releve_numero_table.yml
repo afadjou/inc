@@ -1,0 +1,20 @@
+uuid: 29edb94b-c4d4-4fcc-be92-b5e26ab0f086
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_releve_numero_table
+field_name: field_releve_numero_table
+entity_type: paragraph
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

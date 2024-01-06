@@ -9,6 +9,7 @@
     position: relative;
     margin-top: 5px;
     height: auto;
+
     .inc-logo {
       img {
         position: absolute;
@@ -19,25 +20,85 @@
         border-radius: 2px;
       }
     }
+
     .inc-text {
       padding: 0px;
       font-size: 13px;
       max-height: 38px;
+
       h4 {
+        display: block;
         text-transform: uppercase;
         font-size: 12px;
         font-weight: 700;
         margin: 0;
         color: var(--inc-primary-700);
+
         span {
           font-weight: 200;
         }
+      }
+      h3{
+        display: none;
       }
       p {
         float: left;
         margin-top: -3px;
         color: var(--inc-gray-300);
         text-transform: uppercase;
+      }
+    }
+  }
+}
+/*
+ * Responsive party > 1300px
+ */
+@media screen and (min-width: 1300px) {
+  .navbar {
+     .navbar-logo {
+      .inc-text {
+        h4 {
+          display: block;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 700;
+          margin: 0;
+          color: var(--inc-primary-700);
+
+          span {
+            font-weight: 200;
+          }
+        }
+        h3{
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+/*
+ * Responsive party < 1300px
+ */
+@media screen and (max-width: 1300px) {
+  .navbar {
+    .navbar-logo {
+      .inc-text {
+        h3 {
+          display: block;
+          text-transform: uppercase;
+          font-size: 12px;
+          font-weight: 700;
+          margin: 0;
+          color: var(--inc-primary-700);
+
+          span {
+            font-weight: 200;
+          }
+        }
+        h4 {
+          display: none;
+        }
       }
     }
   }

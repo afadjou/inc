@@ -1,0 +1,87 @@
+uuid: d5755010-1095-485b-9999-3ec134fc4af9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.identite.field_identite_civilite
+    - field.field.paragraph.identite.field_identite_date_naissance
+    - field.field.paragraph.identite.field_identite_lieu_naissance
+    - field.field.paragraph.identite.field_identite_nie
+    - field.field.paragraph.identite.field_identite_nin
+    - field.field.paragraph.identite.field_identite_nom_naissance
+    - field.field.paragraph.identite.field_identite_nom_usage
+    - field.field.paragraph.identite.field_identite_prenom
+    - paragraphs.paragraphs_type.identite
+  module:
+    - datetime
+    - options
+id: paragraph.identite.default
+targetEntityType: paragraph
+bundle: identite
+mode: default
+content:
+  field_identite_civilite:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_identite_date_naissance:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_identite_lieu_naissance:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_identite_nie:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_identite_nin:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_identite_nom_naissance:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_identite_nom_usage:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_identite_prenom:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

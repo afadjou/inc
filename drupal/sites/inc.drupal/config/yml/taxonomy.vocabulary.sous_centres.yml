@@ -1,0 +1,8 @@
+uuid: bec152d1-21f8-4529-b2a7-84221e04faa4
+langcode: fr
+status: true
+dependencies: {  }
+name: 'Sous centres'
+vid: sous_centres
+description: ''
+weight: 0

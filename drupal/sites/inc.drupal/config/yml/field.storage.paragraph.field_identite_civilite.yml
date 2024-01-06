@@ -1,0 +1,27 @@
+uuid: d0829c9f-3986-49ec-9b92-3b67c342790e
+langcode: fr
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_identite_civilite
+field_name: field_identite_civilite
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: monsieur
+      label: Monsieur
+    -
+      value: madame
+      label: Madame
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

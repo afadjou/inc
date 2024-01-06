@@ -1,0 +1,9 @@
+uuid: 560d4d06-9f0a-4184-b1eb-1007bdd24fce
+langcode: fr
+status: true
+dependencies: {  }
+id: enseignant
+label: Enseignant
+weight: 4
+is_admin: null
+permissions: {  }

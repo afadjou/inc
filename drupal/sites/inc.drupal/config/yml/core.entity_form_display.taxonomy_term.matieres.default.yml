@@ -1,0 +1,39 @@
+uuid: 8b2de53d-ff29-4bc5-b5e3-8bb64eaf5276
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.matieres.field_matiere_tag
+    - taxonomy.vocabulary.matieres
+id: taxonomy_term.matieres.default
+targetEntityType: taxonomy_term
+bundle: matieres
+mode: default
+content:
+  field_matiere_tag:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 2
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  description: true
+  langcode: true
+  path: true

@@ -1,7 +1,7 @@
 <div class="rn-block">
-  <h4>Fiches d'examens [<strong>{{ student?.name | uppercase }} {{ student?.firstName }}</strong>]</h4><hr/>
+  <h4>Fiches d'examens [<strong>{{ student?.identite?.nomUsage | uppercase }} {{ student?.identite?.prenom }} | {{ student?.name | uppercase }}</strong>]</h4><hr/>
   <div class="row dx-form">
-    <div class="col-sm-6">
+    <div class="col-sm-7">
       Edition des fiches
       <hr/>
       <dx-data-grid
@@ -27,7 +27,7 @@
         </dxo-pager>
         <dxo-paging [enabled]="true" [pageSize]="7"></dxo-paging>
         <dxo-editing
-          mode="cell"
+          mode="row"
           [allowUpdating]="true"
           [allowAdding]="true"
           [useIcons]="true"
@@ -49,17 +49,23 @@
           <dxo-lookup [dataSource]="serials" valueExpr="id" displayExpr="label"></dxo-lookup>
           <dxi-validation-rule type="required" message="Le série est obligatoire"></dxi-validation-rule>
         </dxi-column>
-        <dxi-column dataField="center" caption="Centre" width="90" [allowFiltering]="false"></dxi-column>
-        <dxi-column dataField="scenter" caption="S/Centre" width="90" [allowFiltering]="false"></dxi-column>
+        <dxi-column dataField="center" caption="Centre" width="90" [allowFiltering]="false">
+          <dxo-lookup [dataSource]="centers" valueExpr="tid" displayExpr="name"></dxo-lookup>
+          <dxi-validation-rule type="required" message="Le centre est obligatoire"></dxi-validation-rule>
+        </dxi-column>
+        <dxi-column dataField="scenter" caption="S/Centre" width="90" [allowFiltering]="false">
+          <dxo-lookup [dataSource]="scenters" valueExpr="tid" displayExpr="name"></dxo-lookup>
+          <dxi-validation-rule type="required" message="Le sous centre est obligatoire"></dxi-validation-rule>
+        </dxi-column>
         <dxi-column dataField="n_table" caption="N° Table" width="60" [allowFiltering]="false"></dxi-column>
         <dxi-column dataField="deliberation_date" caption="Date délib." [allowFiltering]="false" dataType="date" format="dd/MM/yyyy">
         </dxi-column>
       </dx-data-grid>
       Edition relevés des notes [{{ rn?.type }}]
       <hr/>
-      <app-note [rn]="rn" [shutter]="shutter" [student]="student"></app-note>
+      <app-note *ngIf="rn" [rn]="rn" [shutter]="shutter" [student]="student"></app-note>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-5">
       <div id="pdf-view" class="pdf-view"></div>
     </div>
   </div>

@@ -7,7 +7,7 @@ dx-data-grid.dx-widget {
     -webkit-box-shadow: 0px 1px 5px 0 var(--inc-gray-300);
     overflow: hidden;
     .dx-datagrid-header-panel {
-      padding: 6px;
+      padding: 12px;
       background-color: var(--inc-white);
       .dx-toolbar {
         margin: 0;
@@ -30,11 +30,17 @@ dx-data-grid.dx-widget {
             td {
               border:0;
               font-family: "system-ui";
-              font-weight: 100;
-              font-size: 12px;
+              font-weight: 500;
+              font-size: 14px;
               &:first-child,
               &:last-child{
                 border: 0;
+              }
+              &.responsive-column {
+                width: 120px;
+              }
+              &.dx-actions {
+                width: 300px;
               }
             }
           }
@@ -50,12 +56,19 @@ dx-data-grid.dx-widget {
               border: solid 0.5px var(--inc-gray-200);
               font-family: "system-ui";
               font-weight: 100;
+              vertical-align: middle;
               font-size: 12px;
               a.dx-link {
                 color: var(--inc-primary);
               }
               .dx-icon {
                 color: var(--inc-gray-300);
+              }
+              &.responsive-column {
+                width: 120px;
+              }
+              &.dx-actions {
+                width: 300px;
               }
             }
             &:nth-child(even) {
@@ -75,6 +88,181 @@ dx-data-grid.dx-widget {
         &:before {
           font-size: 12px;
         }
+      }
+    }
+  }
+}
+/*
+ * Responsive party < 1024
+ */
+@media screen and (max-width: 1024px) {
+  dx-data-grid.dx-widget {
+    .dx-datagrid {
+      .dx-datagrid-headers {
+        .dx-datagrid-content {
+          table {
+            tr {
+              td {
+                &.responsive-column {
+                  width: unset;
+                }
+                &.dx-actions {
+                  width: 100px;
+                }
+                &.responsive-name {
+                  width: 150px;
+                }
+                &.responsive-image {
+                  width: 70px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .dx-datagrid-rowsview {;
+        .dx-datagrid-content {
+          table {
+            tr {
+              td {
+                &.responsive-column {
+                  width: unset;
+                }
+                &.dx-actions {
+                  width: 100px;
+                }
+                &.responsive-name {
+                  width: 150px;
+                }
+                &.responsive-image {
+                  width: 70px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .dx-toolbar {
+    .dx-toolbar-after {
+      width: 100%;
+      padding: 0;
+      padding-left: 0 !important;
+      .dx-datagrid-search-panel {
+        width: 100% !important;
+        margin: auto;
+      }
+    }
+  }
+}
+/*
+ * Responsive party > 750px
+ */
+@media screen and (min-width: 1024px) {
+  dx-data-grid.dx-widget {
+    .dx-datagrid {
+      .dx-datagrid-headers {
+        .dx-datagrid-content {
+          table {
+            tr {
+              td {
+                &.responsive-column {
+                  width: 120px;
+                }
+                &.responsive-name {
+                  width: 150px;
+                }
+                &.responsive-image {
+                  width: 70px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .dx-datagrid-rowsview {;
+        .dx-datagrid-content {
+          table {
+            tr {
+              td {
+                &.responsive-column {
+                  width: 102px;
+                }
+                &.responsive-name {
+                  width: 150px;
+                }
+                &.responsive-image {
+                  width: 70px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+/*
+ * Responsive party < 750px
+ */
+@media screen and (max-width: 280px) {
+  dx-data-grid.dx-widget {
+    .dx-datagrid {
+      .dx-datagrid-headers {
+        .dx-datagrid-content {
+          table {
+            tr {
+              td {
+                &.responsive-column {
+                  width: unset;
+                }
+                &.dx-actions {
+                  width: 100px;
+                }
+                &.responsive-name {
+                  width: 120px;
+                }
+                &.responsive-image {
+                  width: 30px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .dx-datagrid-rowsview {;
+        .dx-datagrid-content {
+          table {
+            tr {
+              td {
+                &.responsive-column {
+                  width: unset;
+                }
+                &.dx-actions {
+                  width: 100px;
+                }
+                &.responsive-name {
+                  width: 120px;
+                }
+                &.responsive-image {
+                  width: 1px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .dx-toolbar {
+    .dx-toolbar-after {
+      width: 100%;
+      padding: 0;
+      padding-left: 0 !important;
+      .dx-datagrid-search-panel {
+        width: 100% !important;
+        margin: auto;
       }
     }
   }

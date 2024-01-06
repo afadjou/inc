@@ -1,0 +1,20 @@
+uuid: 3b60efd0-b63e-47e3-80d7-39ec71a94d30
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+id: paragraph.field_releve_decision
+field_name: field_releve_decision
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

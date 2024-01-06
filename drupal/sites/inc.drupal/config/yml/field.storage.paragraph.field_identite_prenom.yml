@@ -1,0 +1,21 @@
+uuid: 174258f9-a9db-423c-8f26-403845b3a139
+langcode: fr
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_identite_prenom
+field_name: field_identite_prenom
+entity_type: paragraph
+type: string
+settings:
+  max_length: 100
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

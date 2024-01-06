@@ -2,36 +2,32 @@
   <h3 *ngIf="is_new">Création nouveau compte</h3>
   <h3 *ngIf="!is_new">Modifier mon compte</h3>
   <hr/>
-  <dx-form id="form" [formData]="user">
+  <dx-form *ngIf="user.mail" id="form" [formData]="user">
     <dxi-item itemType="group" cssClass="first-group" [colCount]="4">
       <dxi-item>
         <div class="form-avatar">
-          <img src="{{ user.photoURL }}"/>
+          <img src="{{ user.image.url }}"/>
         </div>
       </dxi-item>
       <dxi-item itemType="group" [colSpan]="3">
-        <dxi-item dataField="cne"  [label]="{ text: 'NIN' }"></dxi-item>
-        <!--<dxi-item dataField="serial" [label]="{ text: 'Série' }"
-          editorType="dxSelectBox"
-          [editorOptions]="{ items: serials, valueExpr: 'id', displayExpr: 'label' }">
-        </dxi-item>-->
-        <dxi-item dataField="name" [label]="{ text: 'Nom' }">
+        <dxi-item dataField="identite.nin"  [label]="{ text: 'NIN' }"></dxi-item>
+        <dxi-item dataField="identite.nomUsage" [label]="{ text: 'Nom' }">
           <dxi-validation-rule type="required" message="Le Nom est requis"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item dataField="firstName" [label]="{ text: 'Prénom' }">
+        <dxi-item dataField="identite.prenom" [label]="{ text: 'Prénom' }">
           <dxi-validation-rule type="required" message="Le prénom est requis"></dxi-validation-rule>
         </dxi-item>
         <dxi-item
-          dataField="birthday"  [label]="{ text: 'Date de naissance' }"
+          dataField="identite.dateNaissance"  [label]="{ text: 'Date de naissance' }"
           editorType="dxDateBox"
-          [editorOptions]="{ width: '100%' }"
+          [editorOptions]="{ width: '100%', displayFormat: 'dd/MM/yyy' }"
         >
           <dxi-validation-rule type="required" message="La date de naissance est requise"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item dataField="birth_location" [label]="{ text: 'Lieu de naissance' }">
+        <dxi-item dataField="identite.lieuNaissance" [label]="{ text: 'Lieu de naissance' }">
           <dxi-validation-rule type="required" message="Le lieu de naissance est obligatoire"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item dataField="email" [label]="{ text: 'Email' }">
+        <dxi-item dataField="mail" [label]="{ text: 'Email' }">
           <dxi-validation-rule type="required" message="L'adresse email est requise"></dxi-validation-rule>
           <dxi-validation-rule type="email" message="L'email n'est pas valide"></dxi-validation-rule>
         </dxi-item>
@@ -42,31 +38,29 @@
     </dxi-item>
     <dxi-item itemType="group" cssClass="second-group" [colCount]="2">
       <dxi-item itemType="group">
-        <dxi-item dataField="address"  [label]="{ text: 'Adresse' }">
+        <dxi-item dataField="adresses.rue"  [label]="{ text: 'Adresse' }">
         </dxi-item>
-        <dxi-item dataField="city"  [label]="{ text: 'Ville' }">
+        <dxi-item dataField="adresses.ville.name"  [label]="{ text: 'Ville' }">
           <dxi-validation-rule type="required" message="La ville est obligatoire"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item
-          dataField="role"  [label]="{ text: 'Role' }"
-          editorType="dxSelectBox"
-          [editorOptions]="{ items: roles, valueExpr: 'id', displayExpr: 'label' }"
-          *ngIf="connectedUser?.role == 'ADMIN_ROLE'"
+        <dxi-item [label]="{ text: 'Roles' }"
+          dataField="roles" editorType="dxTagBox"
+          [editorOptions]="{ dataSource: roles_list, keyExpr: 'id', displayExpr: 'label' }" *ngIf=isAdministrator
         >
         <dxi-validation-rule type="required" message="Le rôle est obligatoire"></dxi-validation-rule>
       </dxi-item>
       </dxi-item>
       <dxi-item itemType="group">
         <dxi-item
-          dataField="country"  [label]="{ text: 'Pays' }"
+          dataField="adresses.pays.name"  [label]="{ text: 'Pays' }"
         >
         <dxi-validation-rule type="required" message="Le pays est obligatoire"></dxi-validation-rule>
         </dxi-item>
-        <dxi-item dataField="zip"  [label]="{ text: 'Code postal' }">
+        <dxi-item dataField="adresses.codePostal"  [label]="{ text: 'Code postal' }">
           <dxi-validation-rule type="required" message="Le code postal est obligatoire"></dxi-validation-rule>
         </dxi-item>
         <dxi-item
-          dataField="phoneNumber"
+          dataField="contact.telephone"
           [label]="{ text: 'Numéro de télephone' }"
           [editorOptions]="{ mask: '+33 0 00-00-00-00' }"
         ></dxi-item>

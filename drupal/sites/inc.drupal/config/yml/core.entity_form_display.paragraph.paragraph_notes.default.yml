@@ -1,0 +1,62 @@
+uuid: 1607eb8e-f68a-4840-9a26-8287cf1a4afb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.paragraph_notes.field_note_matiere
+    - field.field.paragraph.paragraph_notes.field_note_note
+    - field.field.paragraph.paragraph_notes.field_note_releve
+    - paragraphs.paragraphs_type.paragraph_notes
+  module:
+    - paragraphs
+id: paragraph.paragraph_notes.default
+targetEntityType: paragraph
+bundle: paragraph_notes
+mode: default
+content:
+  field_note_matiere:
+    type: paragraphs
+    weight: 0
+    region: content
+    settings:
+      title: Paragraphe
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+  field_note_note:
+    type: number
+    weight: 1
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_note_releve:
+    type: paragraphs
+    weight: 2
+    region: content
+    settings:
+      title: Paragraphe
+      title_plural: Paragraphs
+      edit_mode: open
+      closed_mode: summary
+      autocollapse: none
+      closed_mode_threshold: 0
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+      features:
+        collapse_edit_all: collapse_edit_all
+        duplicate: duplicate
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

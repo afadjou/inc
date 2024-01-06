@@ -1,0 +1,10 @@
+uuid: d87dce06-8a70-48e6-8cca-6e094cbf172e
+langcode: fr
+status: true
+dependencies: {  }
+id: paragraph_matieres
+label: matieres
+icon_uuid: null
+icon_default: null
+description: 'Entité qui représente une matière (module d''enseignement)'
+behavior_plugins: {  }

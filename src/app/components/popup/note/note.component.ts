@@ -1,11 +1,10 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {DbQueryService} from "../../../shared/query/db.query.service";
 import {RestService} from "../../../shared/tools/rest.service";
-import {Releve} from "../../../shared/interface/Releve";
 import {ViewSdkService} from "../../../shared/sdk/view.sdk.service";
-import {base64_encode} from "devextreme/data/utils";
-import {ListService} from "../../../shared/tools/list.service";
-import {RuleService} from "../../../shared/tools/rule.service";
+import {Error} from "../../../shared/notify/error";
+import {Success} from "../../../shared/notify/success";
+import {NotifyService} from "../../../shared/notify/services/notify.service";
+import {Releve} from "../../../shared/interface/Releve";
 
 @Component({
   selector: 'app-note',
@@ -23,11 +22,10 @@ export class NoteComponent implements OnInit, OnChanges {
 
   labels: any[] = [];
   constructor(
-    private db: DbQueryService,
+    private notifyService: NotifyService,
     private rest: RestService,
-    private viewSdkService: ViewSdkService,
-    private listService: ListService,
-    private ruleService: RuleService){}
+    private viewSdkService: ViewSdkService
+  ){}
 
   ngOnInit(): void {
     // TODO
@@ -39,22 +37,32 @@ export class NoteComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
 
     if (this.rn) {
-      // Select notes
-      this.path = 'shutters/' + this.shutter + '/rn/' + this.rn.id + '/notes/';
-      this.db.select(this.path).valueChanges().subscribe(
-        (notes: any[]) => {
-          this.labels = this.listService.matters();
-          this.notes = notes;
+      // Recupération de la liste des labels matières.
+      this.rest.request({ action: "matters_labels" }).then(
+        (result: any) => {
+          if (result.list) {
+            this.labels = result.list;
+          }
         }
       );
-      let path_matters = '/shutters/' + this.shutter + '/matters';
-      this.db.select(path_matters).valueChanges().subscribe(
-        (matters: any[]) => {
-          this.matters = matters.filter(
-            (matter: any) => {
-              return matter.serial == this.rn?.serial;
-            }
-          );
+      // Liste des matières selon la série.
+      this.rest.request({ action: "matters" }).then(
+        (result: any) => {
+          if (result.list) {
+            this.matters = result.list.filter(
+              (matter: any) => {
+                return matter.serial == this.rn?.serial;
+              }
+            );
+          }
+        }
+      );
+      // Select notes
+      this.rest.request({ action: "notes", rnid: this.rn.id }).then(
+        (result: any) => {
+          if (result.list) {
+            this.notes = result.list;
+          }
         }
       );
     }
@@ -65,9 +73,8 @@ export class NoteComponent implements OnInit, OnChanges {
    * @param e
    */
   onRowInserted(e: any) {
-    if (this.rn) {
-      this.onRowUpdated(e);
-      e.component.addRow();
+    if (e.data) {
+      this.updateRow(e.data, 'add_note');
     }
   }
 
@@ -76,37 +83,50 @@ export class NoteComponent implements OnInit, OnChanges {
    * @param e
    */
   onRowUpdated(e: any) {
-    let data: any;
-    if (e.data && e.data.id) {
-      data = e.data;
-      data.id = e.data.id;
-    } else if (e.oldData && e.oldData.id) {
-      data = e.newData;
-      data.id = e.oldData.id;
-    }
-
-    const cible = this.path + data.id;
-    this.db.insert(cible, data);
-
-    // Recalcul de la moyenne
-    const result: any = this.ruleService.moy({ rn: this.rn, matters: this.matters, notes: this.notes });
-    if (result && result.moy) {
-      const cible = 'shutters/' + this.shutter + '/rn/' + this.rn.id;
-      this.rn.moy = result.moy;
-      this.rn.mention = result.mention;
-      this.rn.decision = result.decision;
-      this.db.update(cible, this.rn);
+    if (e.data) {
+      this.updateRow(e.data);
     }
   }
 
+  updateRow(data: any, action: string = 'update_note') {
+    data.releve = this.rn.id;
+    this.rest.request({ action: action, data: data }).then(
+      (result: any) => {
+        console.log(result);
+        if (result.code && result.code === 200) {
+          if (action == 'add_note') {
+            data.id = result.data;
+            this.notifyService.notify(new Success('Insertion terminée avec succès'));
+          } else {
+            this.notifyService.notify(new Success('Mise à jour terminée avec succès'));
+          }
+        } else {
+          this.notifyService.notify(new Error(result.message, 'error', 3000));
+        }
+      },
+      (error: any) => {
+        this.notifyService.notify(new Error(error.error.message, 'error', 3000));
+      }
+    );
+  }
   /**
    * Suppression d'une note.
    * @param e
    */
   onRowRemoved(e: any) {
     if (e.data.id) {
-      let p = this.path + e.data.id;
-      this.db.delete(p).then();
+      this.rest.request({ action: "remove_note", id: e.data.id }).then(
+        (result: any) => {
+          if (result.code && result.code === 200) {
+            this.notifyService.notify(new Success('Suppression terminée avec succès.'));
+          } else {
+            this.notifyService.notify(new Error(result.message, 'error', 3000));
+          }
+        },
+        (error: any) => {
+          this.notifyService.notify(new Error(error.error.message, 'error', 3000));
+        }
+      );
     }
   }
 
@@ -131,7 +151,7 @@ export class NoteComponent implements OnInit, OnChanges {
           icon: 'pdffile',
           text: 'PDF',
           onClick: () => {
-            this.rest.prepare(this.student.uid, new Releve('', '', { rn: this.rn, matters: this.matters, notes: this.notes })).then(
+            this.rest.prepare(this.student, new Releve('', '', { rn: this.rn, matters: this.matters, notes: this.notes })).then(
               (doc: any) => {
                 const error_message: string = '<p>Nous avons rencontré un problème lors de la génération du document.</p>';
                 this.rest.send(doc).then(

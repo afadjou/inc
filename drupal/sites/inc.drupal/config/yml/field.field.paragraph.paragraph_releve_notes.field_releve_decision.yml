@@ -1,0 +1,29 @@
+uuid: d35997ff-144e-4e5e-9885-1194d7ec2847
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_releve_decision
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+    - taxonomy.vocabulary.decisions
+id: paragraph.paragraph_releve_notes.field_releve_decision
+field_name: field_releve_decision
+entity_type: paragraph
+bundle: paragraph_releve_notes
+label: Décision
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      decisions: decisions
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

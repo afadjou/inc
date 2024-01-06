@@ -1,0 +1,48 @@
+uuid: 4351c311-93fc-47f8-9c19-124767ae67e2
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.series.field_series_tag
+    - taxonomy.vocabulary.series
+  module:
+    - text
+id: taxonomy_term.series.default
+targetEntityType: taxonomy_term
+bundle: series
+mode: default
+content:
+  description:
+    type: text_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_series_tag:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 3
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  path: true

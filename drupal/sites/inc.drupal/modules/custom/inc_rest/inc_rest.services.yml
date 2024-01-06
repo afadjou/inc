@@ -1,0 +1,14 @@
+services:
+  logger.channel.inc_rest:
+    parent: logger.channel_base
+    arguments: ['inc_rest']
+  inc_rest.manager.plugin:
+    class: Drupal\inc_rest\Plugin\action\ActionPluginManager
+    parent: default_plugin_manager
+  inc_rest.manager.validation:
+    class: Drupal\inc_rest\Plugin\rest\validation\ValidationPluginManager
+    parent: default_plugin_manager
+  inc_rest.service:
+    class: Drupal\inc_rest\Service\RestService
+    arguments:
+      - '@inc_rest.manager.validation'

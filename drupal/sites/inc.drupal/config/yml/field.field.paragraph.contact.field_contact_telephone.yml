@@ -1,0 +1,19 @@
+uuid: 461ae0e1-44bc-4770-8234-47c2648151ce
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_contact_telephone
+    - paragraphs.paragraphs_type.contact
+id: paragraph.contact.field_contact_telephone
+field_name: field_contact_telephone
+entity_type: paragraph
+bundle: contact
+label: N°Téléphone
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
