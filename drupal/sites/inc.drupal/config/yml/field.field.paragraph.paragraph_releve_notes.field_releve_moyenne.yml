@@ -1,0 +1,23 @@
+uuid: 6107f769-ef0d-4f9b-b2ea-85404d48ed3a
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_releve_moyenne
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+id: paragraph.paragraph_releve_notes.field_releve_moyenne
+field_name: field_releve_moyenne
+entity_type: paragraph
+bundle: paragraph_releve_notes
+label: Moyenne
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: !!float 20
+  prefix: ''
+  suffix: ''
+field_type: float

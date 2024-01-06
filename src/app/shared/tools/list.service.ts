@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import {RestService} from "./rest.service";
+import {NotifyService} from "../notify/services/notify.service";
+import {Error} from "../notify/error";
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +14,9 @@ export class ListService {
    */
   rols() {
     return [
-      { id: 'ANONYMOUS_ROLE', label: 'Anonyme' },
-      { id: 'ADMIN_ROLE', label: 'Administrateur' },
-      { id: 'STUDENT_ROLE', label: 'Etudiant' },
-      { id: 'TEACHER_ROLE', label: 'Professeur' }
+      { id: 'administrator', label: 'Administrateur' },
+      { id: 'etudiant', label: 'Etudiant' },
+      { id: 'enseignant', label: 'Professeur' }
     ];
   }
 
@@ -38,7 +40,7 @@ export class ListService {
       { id: 'math', label: 'Mathématiques' },
       { id: 'scp', label: 'Sciences-Physiques'},
       { id: 'scn', label: 'Sciences-Naturelles'},
-      { id: 'esp', label: 'Education phyisique' },
+      { id: 'esp', label: 'Education Sportive et phyisique' },
       { id: 'dessin', label: 'Dessin au choix'}
     ];
   }

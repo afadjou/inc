@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * @file
+ * Contains cri_rest.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function cri_rest_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the cri_rest module.
+    case 'help.page.inc_rest':
+      $output = '';
+      $output .= '<h3>' . \Drupal::service('string_translation')->translate('About') . '</h3>';
+      $output .= '<p>' . \Drupal::service('string_translation')->translate('Custom INC API REST') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function cri_rest_theme() {
+  return [
+    'inc_rest' => [
+      'render element' => 'children',
+    ],
+  ];
+}

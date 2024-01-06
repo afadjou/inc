@@ -1,0 +1,23 @@
+uuid: 1b6afab9-add9-4add-95e6-cb820f151be7
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_matiere_coef
+    - paragraphs.paragraphs_type.paragraph_matieres
+id: paragraph.paragraph_matieres.field_matiere_coef
+field_name: field_matiere_coef
+entity_type: paragraph
+bundle: paragraph_matieres
+label: Coeficient
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

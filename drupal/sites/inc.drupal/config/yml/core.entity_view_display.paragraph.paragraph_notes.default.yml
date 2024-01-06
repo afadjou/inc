@@ -1,0 +1,46 @@
+uuid: dc81602e-b2c4-433a-aebb-9ae397a3450b
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.paragraph_notes.field_note_matiere
+    - field.field.paragraph.paragraph_notes.field_note_note
+    - field.field.paragraph.paragraph_notes.field_note_releve
+    - paragraphs.paragraphs_type.paragraph_notes
+  module:
+    - entity_reference_revisions
+id: paragraph.paragraph_notes.default
+targetEntityType: paragraph
+bundle: paragraph_notes
+mode: default
+content:
+  field_note_matiere:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_note_note:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_note_releve:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden: {  }

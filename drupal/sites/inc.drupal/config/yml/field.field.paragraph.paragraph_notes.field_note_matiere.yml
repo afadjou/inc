@@ -1,0 +1,34 @@
+uuid: 75c8701e-3517-4f05-8f13-84cdf6fa02a6
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_note_matiere
+    - paragraphs.paragraphs_type.paragraph_matieres
+    - paragraphs.paragraphs_type.paragraph_notes
+  module:
+    - entity_reference_revisions
+id: paragraph.paragraph_notes.field_note_matiere
+field_name: field_note_matiere
+entity_type: paragraph
+bundle: paragraph_notes
+label: Matière
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      paragraph_matieres: paragraph_matieres
+    negate: 0
+    target_bundles_drag_drop:
+      paragraph_matieres:
+        weight: 3
+        enabled: true
+      paragraph_notes:
+        weight: 4
+        enabled: false
+field_type: entity_reference_revisions

@@ -1,0 +1,29 @@
+uuid: 7eac6874-87c8-4d67-b0bf-c68b4ca16413
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_releve_sous_centre
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+    - taxonomy.vocabulary.sous_centres
+id: paragraph.paragraph_releve_notes.field_releve_sous_centre
+field_name: field_releve_sous_centre
+entity_type: paragraph
+bundle: paragraph_releve_notes
+label: 'Sous centre'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      sous_centres: sous_centres
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

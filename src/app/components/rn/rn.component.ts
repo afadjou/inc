@@ -11,6 +11,9 @@ import {Releve} from "../../shared/interface/Releve";
 import {ViewSdkService} from "../../shared/sdk/view.sdk.service";
 import {ListService} from "../../shared/tools/list.service";
 import {Warning} from "../../shared/notify/warning";
+import {Error} from "../../shared/notify/error";
+import {Success} from "../../shared/notify/success";
+import {compileResults} from "@angular/compiler-cli/src/ngtsc/annotations/common";
 
 @Component({
   selector: 'app-rn',
@@ -29,6 +32,8 @@ export class RnComponent implements OnInit {
   shutter: string = '';
   path: string = '';
   serials: any[] = [];
+  centers: any[] = [];
+  scenters: any[] = [];
   focusedRowKey = 117;
 
   constructor(
@@ -47,41 +52,71 @@ export class RnComponent implements OnInit {
   ngOnInit(): void {
     this.shutter = localStorage.getItem('shutter_id') ?? '';
     this.path = 'shutters/' + this.shutter + '/rn/';
-    let path_matters = '/shutters/' + this.shutter + '/matters/';
-    this.serials = this.listService.serials();
 
-    // Liste des matières.
-    this.db.select(path_matters).valueChanges().subscribe(
-      (matters: any[]) => {
-        this.matters = matters;
+    // Liste des séries
+    this.rest.request({ action: "series" }).then(
+      (result: any) => {
+        if (result.list) {
+          this.serials = result.list;
+        }
       }
     );
 
-    // Etudiant -chargement
-    const uid = this.route.snapshot.params['uid'];
-    if (uid) {
-      this.uq.getUserByUID(uid).valueChanges().subscribe(
-        (user: any) => {
-          let dte = user.birthday && user.birthday.seconds ? new Date(user.birthday.seconds * 1000) : new Date();
-          user.birthday = dte;
-          this.student = user;
+    // List de centres
+    this.rest.request({ action: "centers" }).then(
+      (result: any) => {
+        if (result.list) {
+          this.centers = result.list;
         }
-      );
-    }
+      },
+      (error: any) => {
+        this.notifyService.notify(new Error(error.error.message, 'error', 3000));
+      }
+    );
 
-    // Relevés de notes chargement
-    this.db.query(this.path, { key: 'uid', op: '==', value: uid})?.valueChanges().subscribe(
-      (rns: any[]) => {
-        if (rns) {
-          rns.forEach(
-            (r: any) => {
-              r.deliberation_date = r.deliberation_date?.seconds ? new Date((r.deliberation_date?.seconds * 1000) + (r.deliberation_date?.nanoseconds / 1000)) : '';
-            }
-          );
-          this.rns = rns.sort((a: any, b: any) => {
+    // List de sous centres
+    this.rest.request({ action: "scenters" }).then(
+      (result: any) => {
+        if (result.list) {
+          this.scenters = result.list;
+        }
+      },
+      (error: any) => {
+        this.notifyService.notify(new Error(error.error.message, 'error', 3000));
+      }
+    );
+
+    // Etudiant
+    const uid = this.route.snapshot.params['uid'];
+    this.rest.request({ action: "user", uid: uid }).then(
+      (result: any) => {
+        if (result.user) {
+          this.student = result.user;
+        }
+      }
+    );
+    // Liste des RN
+    this.rest.request({ action: "notes_list", uid: uid }).then(
+      (result: any) => {
+        if (result.list) {
+          this.rns = result.list.sort((a: any, b: any) => {
             return b.type.localeCompare(a.type);
           });
           this.rn = this.rn ?? this.rns.at(0);
+
+          // Liste des matières selon la série.
+          this.rest.request({ action: "matters" }).then(
+            (result: any) => {
+              if (result.list) {
+                this.matters = result.list.filter(
+                  (matter: any) => {
+                    return matter.serial == this.rn?.serial;
+                  }
+                );
+              }
+            }
+          );
+
           this.focusedRowKey = this.rn?.id;
           this.doc();
         }
@@ -105,6 +140,7 @@ export class RnComponent implements OnInit {
   onSelectionChangeed(e: any) {
     if (e.row.data) {
       this.rn = e.row.data;
+
       this.doc();
     }
   }
@@ -114,11 +150,7 @@ export class RnComponent implements OnInit {
    * @param e
    */
   onRowInserted(e: any) {
-    if (this.student) {
-      e.data.uid = this.student.uid;
-      this.onRowUpdated(e);
-      e.component.addRow();
-    }
+    this.updateRow(e.data, 'add_rn');
   }
 
   /**
@@ -126,41 +158,53 @@ export class RnComponent implements OnInit {
    * @param e
    */
   onRowUpdated(e: any) {
-    const now = new Date();
-    if (e.data.deliberation_date && e.data.deliberation_date <= now) {
-      this.notifyService.notify(new Warning('Cette fiche est fermée, vous ne pouvez pas la modifier !'));
-      return;
-    }
-    let data: any;
-    if (e.data && e.data.id) {
-      data = e.data;
-      data.id = e.data.id;
-    } else if (e.oldData && e.oldData.id) {
-      data = e.newData;
-      data.id = e.oldData.id;
-    }
-
-    const cible = this.path + data.id;
-    this.db.insert(cible, data);
+    this.updateRow(e.data);
 
     // Regenration editique
-    this.rn = data;
+    this.rn = e.data;
     this.doc();
   }
 
+  updateRow(data: any, action: string = 'update_rn') {
+    data.student = this.student.uid;
+    if (data.deliberation_date.toLocaleDateString?.()) {
+      data.deliberation_date = data.deliberation_date.getFullYear() + '-' + data.deliberation_date.getMonth() + '-' + data.deliberation_date.getDate();
+    }
+
+    this.rest.request({ action: action, data: data }).then(
+      (result: any) => {
+        if (result.code && result.code === 200) {
+          if (action == 'add_rn') {
+            data.id = result.data;
+            this.notifyService.notify(new Success('Insertion terminée avec succès'));
+          } else {
+            this.notifyService.notify(new Success('Mise à jour terminée avec succès'));
+          }
+        } else {
+          this.notifyService.notify(new Error(result.message, 'error', 3000));
+        }
+      },
+      (error: any) => {
+        this.notifyService.notify(new Error(error.error.message, 'error', 3000));
+      }
+    );
+  }
   /**
    * Suppresson d'un relevé de notes.
    * @param e
    */
   onRowRemoved(e: any) {
     if (e.data.id) {
-      let p = this.path + e.data.id;
-
-      // Suppression de la collection des notes
-      this.db.delete(p + '/notes/*').then(
-        () => {
-          // Suppression du relevé
-          this.db.delete(p);
+      this.rest.request({ action: "remove_rn", rnid: e.data.id }).then(
+        (result: any) => {
+          if (result.code && result.code === 200) {
+            this.notifyService.notify(new Success('Suppessin terminée avec succès'));
+          } else {
+            this.notifyService.notify(new Error(result.message, 'error', 3000));
+          }
+        },
+        (error: any) => {
+          this.notifyService.notify(new Error(error.error.message, 'error', 3000));
         }
       );
     }
@@ -184,38 +228,41 @@ export class RnComponent implements OnInit {
   }
 
   doc() {
-    let cible = this.path + this.rn?.id + '/notes/';
-    this.db.select(cible).valueChanges().subscribe(
-      (notes: any[]) => {
-        this.rest.prepare(this.student?.uid, new Releve('', '', { rn: this.rn, matters: this.matters, notes: notes })).then(
-          (doc: any) => {
-            const error_message: string = '<p>Nous avons rencontré un problème lors de la génération du document.</p>';
-            this.rest.send(doc).then(
-              (response: any) => {
-                if (!Array.isArray(response) && response.releves_notes && response.releves_notes.errorCode == 0) {
-                  this.viewSdkService.ready().then(
-                    () => {
-                      this.viewSdkService.previewFile('pdf-view', { defaultViewMode: "FIT_WIDTH" }, response.releves_notes.file.content);
+    // Select notes
+    this.rest.request({ action: "notes", rnid: this.rn.id }).then(
+      (result: any) => {
+        if (result.list) {
+          let notes = result.list;
+          this.rest.prepare(this.student, new Releve('', '', { rn: this.rn, matters: this.matters, notes: notes })).then(
+            (doc: any) => {
+              const error_message: string = '<p>Nous avons rencontré un problème lors de la génération du document.</p>';
+              this.rest.send(doc).then(
+                (response: any) => {
+                  if (!Array.isArray(response) && response.releves_notes && response && response.releves_notes.errorCode == 0) {
+                    this.viewSdkService.ready().then(
+                      () => {
+                        this.viewSdkService.previewFile('pdf-view', { defaultViewMode: "FIT_WIDTH" }, response.releves_notes.file.content);
+                      }
+                    );
+                  } else {
+                    let elt = document.getElementById('pdf-view');
+                    if (elt) {
+                      elt.innerHTML = error_message;
+                      console.log(response);
                     }
-                  );
-                } else {
+                  }
+                },
+                (error: any) => {
                   let elt = document.getElementById('pdf-view');
                   if (elt) {
                     elt.innerHTML = error_message;
-                    console.log(response);
+                    console.log(error);
                   }
                 }
-              },
-              (error: any) => {
-                let elt = document.getElementById('pdf-view');
-                if (elt) {
-                  elt.innerHTML = error_message;
-                  console.log(error);
-                }
-              }
-            );
-          }
-        );
+              );
+            }
+          );
+        }
       }
     );
   }

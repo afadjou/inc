@@ -1,0 +1,19 @@
+uuid: 02ba5d3c-9994-4137-837f-b3940af43d6e
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_identite_nom_usage
+    - paragraphs.paragraphs_type.identite
+id: paragraph.identite.field_identite_nom_usage
+field_name: field_identite_nom_usage
+entity_type: paragraph
+bundle: identite
+label: 'Nom d''usage'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

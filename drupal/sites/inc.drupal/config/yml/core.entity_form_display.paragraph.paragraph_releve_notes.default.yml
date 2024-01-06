@@ -1,0 +1,122 @@
+uuid: 7016187c-4e25-4aff-a82c-87c1c98c51c9
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.paragraph_releve_notes.field_releve_centre
+    - field.field.paragraph.paragraph_releve_notes.field_releve_decision
+    - field.field.paragraph.paragraph_releve_notes.field_releve_deliberation
+    - field.field.paragraph.paragraph_releve_notes.field_releve_etudiant
+    - field.field.paragraph.paragraph_releve_notes.field_releve_examen
+    - field.field.paragraph.paragraph_releve_notes.field_releve_mention
+    - field.field.paragraph.paragraph_releve_notes.field_releve_moyenne
+    - field.field.paragraph.paragraph_releve_notes.field_releve_numero_table
+    - field.field.paragraph.paragraph_releve_notes.field_releve_serie
+    - field.field.paragraph.paragraph_releve_notes.field_releve_session
+    - field.field.paragraph.paragraph_releve_notes.field_releve_sous_centre
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+  module:
+    - datetime
+id: paragraph.paragraph_releve_notes.default
+targetEntityType: paragraph
+bundle: paragraph_releve_notes
+mode: default
+content:
+  field_releve_centre:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_decision:
+    type: entity_reference_autocomplete
+    weight: 9
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_deliberation:
+    type: datetime_default
+    weight: 11
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_releve_etudiant:
+    type: entity_reference_autocomplete
+    weight: 1
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_examen:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_mention:
+    type: entity_reference_autocomplete
+    weight: 8
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_moyenne:
+    type: number
+    weight: 10
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_numero_table:
+    type: number
+    weight: 7
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_serie:
+    type: entity_reference_autocomplete
+    weight: 4
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_session:
+    type: number
+    weight: 3
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_releve_sous_centre:
+    type: entity_reference_autocomplete
+    weight: 6
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

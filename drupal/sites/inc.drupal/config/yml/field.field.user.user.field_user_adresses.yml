@@ -1,0 +1,40 @@
+uuid: ae7d814a-9b5d-44b1-8844-f8e141b0aecb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_adresses
+    - paragraphs.paragraphs_type.adresses
+  module:
+    - entity_reference_revisions
+    - user
+id: user.user.field_user_adresses
+field_name: field_user_adresses
+entity_type: user
+bundle: user
+label: Adresse
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      adresses: adresses
+    negate: 0
+    target_bundles_drag_drop:
+      adresses:
+        weight: 5
+        enabled: true
+      paragraph_matieres:
+        weight: 6
+        enabled: false
+      paragraph_notes:
+        weight: 7
+        enabled: false
+      paragraph_releve_notes:
+        weight: 8
+        enabled: false
+field_type: entity_reference_revisions

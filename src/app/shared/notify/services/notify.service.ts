@@ -35,11 +35,12 @@ export class NotifyService {
    * @param user
    */
   public subscription(user: any) {
+    /*
     this.swPush.requestSubscription({
       serverPublicKey: this.VAPID_PUBLIC_KEY
     })
       .then(ps => this.userQuery.addPso(user, ps).catch(err => this.notify(new Error(err.message))))
-      .catch(err => this.notify(new Error(err.message)));
+      .catch(err => this.notify(new Error(err.message)));*/
   }
 
   /**
@@ -53,8 +54,8 @@ export class NotifyService {
       .catch(error => {});
 
     // Mise à jour sur la p^lateforme
-    this.userQuery.removePso(user).then(() => this.notify(new Warning('Vous venez de vous désinscrire pour recevoir des notifications')))
-      .catch(err => this.notify(new Error(err.message)));
+    /*this.userQuery.removePso(user).then(() => this.notify(new Warning('Vous venez de vous désinscrire pour recevoir des notifications')))
+      .catch(err => this.notify(new Error(err.message)));*/
   }
 
 }

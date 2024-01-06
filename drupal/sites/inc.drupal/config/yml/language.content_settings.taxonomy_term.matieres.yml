@@ -1,0 +1,11 @@
+uuid: 16b603c6-7fdb-42e0-8389-4ab8ba2a8503
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.matieres
+id: taxonomy_term.matieres
+target_entity_type_id: taxonomy_term
+target_bundle: matieres
+default_langcode: site_default
+language_alterable: false

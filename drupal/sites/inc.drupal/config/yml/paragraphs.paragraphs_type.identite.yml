@@ -1,0 +1,10 @@
+uuid: da1a16c2-04b6-4584-8c3a-be9907457e33
+langcode: fr
+status: true
+dependencies: {  }
+id: identite
+label: Identite
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

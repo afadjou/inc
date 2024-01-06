@@ -1,0 +1,21 @@
+uuid: 3a34b5dc-9474-4561-8f33-ba87f1415fd5
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_identite_date_naissance
+    - paragraphs.paragraphs_type.identite
+  module:
+    - datetime
+id: paragraph.identite.field_identite_date_naissance
+field_name: field_identite_date_naissance
+entity_type: paragraph
+bundle: identite
+label: 'Date de naissance'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

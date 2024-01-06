@@ -1,0 +1,8 @@
+uuid: fe723cb0-1e80-4781-8d74-b0007c94600e
+langcode: fr
+status: true
+dependencies: {  }
+name: Décisions
+vid: decisions
+description: ''
+weight: 0

@@ -31,7 +31,7 @@ export class LogoService {
    */
   public formatText(text: string) {
     let t = text.split(' ');
-    text = '<h4>' + t[0];
+    text = '<h3>I - <span>Numérique</span></h3><h4>' + t[0];
     if (t[1]) {
       text += '<span> ' + t[1] + '</span>';
     }

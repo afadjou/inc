@@ -1,0 +1,49 @@
+uuid: fbd8e950-f960-4be6-aee8-bd02319cd225
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_identite
+    - paragraphs.paragraphs_type.identite
+  module:
+    - entity_reference_revisions
+    - user
+id: user.user.field_user_identite
+field_name: field_user_identite
+entity_type: user
+bundle: user
+label: Identité
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      identite: identite
+    negate: 0
+    target_bundles_drag_drop:
+      adresses:
+        weight: 8
+        enabled: false
+      civilite:
+        weight: 9
+        enabled: false
+      contact:
+        weight: 10
+        enabled: false
+      identite:
+        weight: 11
+        enabled: true
+      paragraph_matieres:
+        weight: 12
+        enabled: false
+      paragraph_notes:
+        weight: 13
+        enabled: false
+      paragraph_releve_notes:
+        weight: 14
+        enabled: false
+field_type: entity_reference_revisions

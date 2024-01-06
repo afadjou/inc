@@ -1,0 +1,23 @@
+uuid: cd05491b-535d-4e22-8702-86efe7734811
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_contact_actif
+    - paragraphs.paragraphs_type.contact
+id: paragraph.contact.field_contact_actif
+field_name: field_contact_actif
+entity_type: paragraph
+bundle: contact
+label: 'Est actif'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Activé
+  off_label: Désactivé
+field_type: boolean

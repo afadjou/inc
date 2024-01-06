@@ -1,0 +1,10 @@
+uuid: 90e7b3b9-4149-4090-b738-4f3000c5f273
+langcode: fr
+status: true
+dependencies: {  }
+id: paragraph_releve_notes
+label: 'Relevé de notes'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

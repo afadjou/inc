@@ -25561,6 +25561,9 @@ html:not(.navbar-vertical-collapsed) .navbar-vertical.navbar-expand-xs .navbar-v
   font-size:.8rem;
   width:20rem
 }
+#shadow-host-companion {
+  display: none;
+}
 .search-box .search-box-icon{
   position:absolute;
   color:var(--inc-gray-500);

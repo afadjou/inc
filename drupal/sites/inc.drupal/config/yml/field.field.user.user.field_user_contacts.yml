@@ -1,0 +1,43 @@
+uuid: 4fac0edd-7ab2-405b-957b-47edbb9ce849
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_user_contacts
+    - paragraphs.paragraphs_type.contact
+  module:
+    - entity_reference_revisions
+    - user
+id: user.user.field_user_contacts
+field_name: field_user_contacts
+entity_type: user
+bundle: user
+label: Contacts
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      contact: contact
+    negate: 0
+    target_bundles_drag_drop:
+      adresses:
+        weight: 6
+        enabled: false
+      contact:
+        weight: 7
+        enabled: true
+      paragraph_matieres:
+        weight: 8
+        enabled: false
+      paragraph_notes:
+        weight: 9
+        enabled: false
+      paragraph_releve_notes:
+        weight: 10
+        enabled: false
+field_type: entity_reference_revisions

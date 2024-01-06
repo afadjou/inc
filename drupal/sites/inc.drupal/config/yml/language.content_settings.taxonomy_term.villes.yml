@@ -1,0 +1,11 @@
+uuid: 47c405da-fff7-4646-a7cd-f7030823407f
+langcode: fr
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.villes
+id: taxonomy_term.villes
+target_entity_type_id: taxonomy_term
+target_bundle: villes
+default_langcode: site_default
+language_alterable: false

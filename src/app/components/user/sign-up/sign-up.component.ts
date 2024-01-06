@@ -10,6 +10,8 @@ import { UserQuery } from 'src/app/shared/query/user.query';
 import { Subject } from 'rxjs';
 import { SubjectService } from 'src/app/shared/subscriber/subject.service';
 import {ListService} from "../../../shared/tools/list.service";
+import {Warning} from "../../../shared/notify/warning";
+import {Success} from "../../../shared/notify/success";
 
 @Component({
   selector: 'app-sign-up',
@@ -23,20 +25,15 @@ export class SignUpComponent implements OnInit {
   @ViewChild('form') form : NgForm | undefined;
   user: any = {
     uid: '',
-    email: '',
     name: '',
-    firstName: '',
-    phoneNumber: '',
-    photoURL: '',
-    emailVerified: false,
-    lastSignInTime: '',
-    birthday: new Date(),
-    role: '',
-    address: '',
-    city: '',
-    zip: '',
-    country: '',
-    cne: '',
+    mail: '',
+    created: '',
+    changed: '',
+    roles: [],
+    image: {},
+    identite: {},
+    adresses: {},
+    contact: {}
   };
   is_new: boolean = true;
   buttonOptions: any = {
@@ -46,8 +43,11 @@ export class SignUpComponent implements OnInit {
   };
   picture: any = undefined;
   serials: any[] = [];
+  roles_list: any[] = [];
+  selectedRoles: string[] = [];
   roles: any[] = [];
   connectedUser: any;
+  isAdministrator: boolean = false;
   constructor(
     private authService: AuthService,
     private fileService: FileService,
@@ -59,76 +59,83 @@ export class SignUpComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Utilisateur connecté.
+    this.connectedUser = JSON.parse(localStorage.getItem('user')!);
+
+    // Si l'tulisateur connecté est ADMIN.
+    const admin = this.connectedUser.roles.filter((role: any) => {
+      return role.id == 'administrator';
+    });
+    this.isAdministrator = admin.length > 0;
+
+    // Récupération du détail de l'utilisateur à afficher.
     const uid = this.route.snapshot.params['uid'];
     if (uid) {
-      this.uq.getUserByUID(uid).valueChanges().subscribe(
-        (user: any) => {
-          let dte = user.birthday && user.birthday.seconds ? new Date(user.birthday.seconds * 1000) : new Date();
-          user.birthday = dte;
-          this.user = user;
-          this.is_new = false;
+      this.authService.getUser(uid).then(
+        (result: any) => {
+          if (result.user) {
+            this.user = result.user;
+            // Recherche adresse active
+            this.user.adresses = this.user.adresses.find(
+              (ad: any) => {
+                return ad.active == 1;
+              }
+            );
+            // Recherche contact active
+            this.user.contact = this.user.contact.find(
+              (ct: any) => {
+                return ct.actif == 1;
+              }
+            );
+
+            // Roles
+            this.user.roles.forEach((role: any) => {
+              this.selectedRoles.push(role.id);
+            });
+            this.is_new = false;
+          } else {
+            this.notifyService.notify(new Warning(result.message, 'warning', 3000));
+          }
+        },
+        (error: any) => {
+          this.notifyService.notify(new Error(error.error.message, 'error', 3000));
         }
       );
     }
 
-    this.serials = this.listService.serials();
-    this.roles = this.listService.rols();
+    this.roles_list = this.listService.rols();
 
     const shutter: string = localStorage.getItem('shutter_id') ?? '';
     this.subject.emitShutter(shutter);
-    this.connectedUser = JSON.parse(localStorage.getItem('user')!);
-
   }
 
+  onSelectionRoleChanged(e: any) {
+
+  }
   onFormSubmit(e: any) {
-
     // On veririfie si l'adresse email n'est pas utilisé.
-    if (!this.user.uid) {
-      this.authService.mailExists(this.user.email).then(
-        (re) => {
-          if (re) {
-            this.notifyService.notify(new Error("L'adresse email renseignée est déjà utilisée"));
-            return;
-          }
-
-          // DO SAVE
-          if (this.picture) {
-            this.fileService.uploadFile(this.picture).then(
-              (url: any) => {
-                this.user.photoURL = url;
-                this.authService.createUser(this.user);
-              }
-            );
-          } else {
-            this.authService.createUser(this.user);
-          }
-        },
-      );
-    } else {
-      if (this.picture) {
-        this.fileService.uploadFile(this.picture).then(
-          (url: any) => {
-            this.user.photoURL = url;
-            this.authService.updateUser(this.user);
-          }
-        );
-      }else {
-        this.authService.updateUser(this.user);
-      }
-
+    if (this.user.uid) {
+      this.authService.updateUser(this.user).then((result: any) => {
+        if(result && result.code === 200) {
+          this.notifyService.notify(new Success('La fiche utilisateurs à été mise à jour avec succès.', 'success', 3000));
+        } else {
+          this.notifyService.notify(new Error('La mise à jour de la fiche utilisateur a echoué.', 'error', 3000))
+        }
+      });
     }
   }
 
   onUploaded(e: any) {
-    this.fileService.uploadFile(e.target.files[0], '', 'tmp').then(
-      (url: any) => {
-        this.user.photoURL = url;
-        this.picture = e.target.files[0];
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
+    let file: File = e.target.files[0];
+    if (file) {
+      new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          this.user.image.content = reader.result;
+        }
+      });
+    }
   }
 
 }

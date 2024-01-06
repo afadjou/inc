@@ -1,0 +1,29 @@
+uuid: 1c49433a-67c0-4443-8748-7eb31b7db30d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_adresse_ville
+    - paragraphs.paragraphs_type.adresses
+    - taxonomy.vocabulary.villes
+id: paragraph.adresses.field_adresse_ville
+field_name: field_adresse_ville
+entity_type: paragraph
+bundle: adresses
+label: Ville
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      villes: villes
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

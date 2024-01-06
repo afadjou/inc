@@ -23,19 +23,12 @@ export class AppComponent implements OnInit, OnDestroy {
     collapse: '',
   };
 
-  constructor(private authService: AuthService, private notifyService: NotifyService, private userQuery: UserQuery) {
-    this.authService.afs.firestore.enablePersistence().then();
-  }
+  constructor(private authService: AuthService, private notifyService: NotifyService, private userQuery: UserQuery) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn) {
       this.login = true;
-      const user = JSON.parse(localStorage.getItem('user')!);
-      if (user) {
-        this.userQuery.getUser(user).get().forEach(next => {
-          this.notifyService.subscription(user);
-        }).then();
-      }
+
     } else {
       this.login = false;
     }

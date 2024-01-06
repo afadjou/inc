@@ -1,0 +1,9 @@
+name: 'inc_restui'
+type: module
+description: 'Custom INC API REST UI'
+core_version_requirement: ^8 || ^9
+package: 'CUSTOM'
+dependencies:
+  - basic_auth
+  - inc_rest
+  - restui

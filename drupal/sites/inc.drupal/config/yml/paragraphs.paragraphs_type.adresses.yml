@@ -1,0 +1,10 @@
+uuid: 1f78a8f7-01aa-4515-8384-26ba91c8f04c
+langcode: fr
+status: true
+dependencies: {  }
+id: adresses
+label: Adresses
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,19 @@
+uuid: e146a911-1b1e-4a80-9881-7f3bec870191
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_identite_lieu_naissance
+    - paragraphs.paragraphs_type.identite
+id: paragraph.identite.field_identite_lieu_naissance
+field_name: field_identite_lieu_naissance
+entity_type: paragraph
+bundle: identite
+label: 'Lieu de naissance'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

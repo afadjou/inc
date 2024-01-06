@@ -16,9 +16,10 @@ export class Message {
    *
    * @param message
    */
-  constructor(message: string, type: string = 'info') {
+  constructor(message: string, type: string = 'info', duration: number = 1000) {
     this.message = message;
     this._type = type;
+    this._duration = duration;
   }
 
 }

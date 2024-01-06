@@ -7,8 +7,8 @@ export class Success extends Message {
    * @param message
    * @param type
    */
-  constructor(message: string, type: string = 'success') {
-    super(message, type);
+  constructor(message: string, type: string = 'success', duration: number = 1000) {
+    super(message, type, duration);
     this.code = 0;
   }
 }

@@ -4,10 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-// Firebase imports
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 // DevExtreme imports
 import {
@@ -28,7 +24,6 @@ import {UserComponent} from "./components/user/user.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import {HttpClient, HttpClientModule, HttpHandler} from "@angular/common/http";
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import { ForgotPasswordComponent } from './components/user/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './components/user/verify-email/verify-email.component';
 import {AuthService} from "./components/user/services/auth.service";
@@ -94,15 +89,11 @@ import {UserPipe} from "./shared/pipe/user/user.pipe";
     ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.firebase),
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
-    AngularFirestoreModule,
     DxListModule,
     DxFormModule,
     DxDateBoxModule,

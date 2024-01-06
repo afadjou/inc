@@ -10,11 +10,13 @@ export class UserPipe implements PipeTransform {
   transform(value: any, ...args: unknown[]): Promise<any> {
     return new Promise(
       (resolve, reject) => {
+        /*
         this.uq.getUserByUID(value).valueChanges().subscribe(
           (u: any) => {
             resolve(u.firstName + ' ' + u.name);
           }
         );
+        */
       }
     );
   }

@@ -1,4 +1,4 @@
-import {Component, Input, ChangeDetectorRef, AfterContentChecked, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, ChangeDetectorRef, AfterViewInit, AfterContentChecked, OnDestroy, OnInit} from '@angular/core';
 import { SubjectService } from 'src/app/shared/subscriber/subject.service';
 
 @Component({
@@ -14,24 +14,22 @@ export class DashboardComponent implements OnInit, OnDestroy {
   };
 
   main: any;
-  show_dashbord: boolean = false;
+  show_dashbord: boolean = true;
   watcher: any;
 
   constructor(private subjetc: SubjectService, private cdref: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+    this.subjetc.emitShutter('default');
     this.watcher = this.subjetc.observable.subscribe(
       (shutters: string[]) => {
         let shutter = shutters.at(0);
         this.show_dashbord = shutter == 'default';
+        this.cdref.detectChanges();
       }
     );
-    this.subjetc.emitShutter('default');
   }
 
-  ngAfterContentChecked() {
-    this.cdref.detectChanges();
-  }
   ngOnDestroy(): void {
     this.watcher.unsubscribe();
   }

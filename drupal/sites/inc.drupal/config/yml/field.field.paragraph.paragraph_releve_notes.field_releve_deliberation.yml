@@ -1,0 +1,21 @@
+uuid: 542418b1-a4e8-4237-be26-1101a8ff8787
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_releve_deliberation
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+  module:
+    - datetime
+id: paragraph.paragraph_releve_notes.field_releve_deliberation
+field_name: field_releve_deliberation
+entity_type: paragraph
+bundle: paragraph_releve_notes
+label: Délibération
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

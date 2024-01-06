@@ -7,8 +7,8 @@ export class Error extends Message {
    * @param message
    * @param type
    */
-  constructor(message: string, type: string = 'error') {
-    super(message, type);
+  constructor(message: string, type: string = 'error', duration: number = 1000) {
+    super(message, type, duration);
     this.code = 500;
   }
 }

@@ -1,0 +1,5 @@
+name: 'inc_user'
+type: module
+description: 'Custom INC User'
+core_version_requirement: ^8 || ^9
+package: 'CUSTOM'

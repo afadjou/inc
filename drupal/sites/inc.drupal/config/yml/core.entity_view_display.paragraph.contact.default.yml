@@ -1,0 +1,32 @@
+uuid: ec106cfb-4e9d-4782-8db7-e78378278ab4
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.contact.field_contact_actif
+    - field.field.paragraph.contact.field_contact_telephone
+    - paragraphs.paragraphs_type.contact
+id: paragraph.contact.default
+targetEntityType: paragraph
+bundle: contact
+mode: default
+content:
+  field_contact_actif:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_contact_telephone:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

@@ -1,0 +1,19 @@
+uuid: 7d3cf2d6-f99c-436f-a016-9a5faf0daccb
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_releve_examen
+    - paragraphs.paragraphs_type.paragraph_releve_notes
+id: paragraph.paragraph_releve_notes.field_releve_examen
+field_name: field_releve_examen
+entity_type: paragraph
+bundle: paragraph_releve_notes
+label: Examen
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

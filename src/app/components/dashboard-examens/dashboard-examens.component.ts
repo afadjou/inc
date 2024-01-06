@@ -27,6 +27,7 @@ export class DashboardExamensComponent implements OnInit{
     this.path = 'shutters/' + shutter + '/rn';
 
     // Liste des matières.
+    /*
     this.db.select(this.path).valueChanges().subscribe(
       (rns: any[]) => {
 
@@ -52,6 +53,7 @@ export class DashboardExamensComponent implements OnInit{
         }
       }
     );
+    */
   }
 
   onSelectionChanged(e: any) {

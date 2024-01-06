@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserQuery } from 'src/app/shared/query/user.query';
 import { SubjectService } from 'src/app/shared/subscriber/subject.service';
 import {DbQueryService} from "../../shared/query/db.query.service";
+import {RestService} from "../../shared/tools/rest.service";
+import CustomStore from "devextreme/data/custom_store";
 
 @Component({
   selector: 'app-student',
@@ -9,28 +11,25 @@ import {DbQueryService} from "../../shared/query/db.query.service";
   styleUrls: ['./student.component.scss']
 })
 export class StudentComponent implements OnInit{
-  constructor (private subject: SubjectService, private uq: UserQuery, private db: DbQueryService) {}
-  searchTerms = ['STUDENT_ROLE'];
-  students: any[] = [];
+  constructor (private subject: SubjectService, private restService: RestService, private db: DbQueryService) {}
+  searchTerms = ['etudiant'];
+  students: any;
 
   ngOnInit(): void {
     const shutter: string = localStorage.getItem('shutter_id') ?? '';
-    let path_rn = 'shutters/' + shutter + '/rn';
-    this.uq.fetchAll().valueChanges().subscribe(
-      (users) => {
-        this.students = users.filter(
-          (user) => {
-            if (this.searchTerms.includes(user.role)){
-              return true;
+    this.students = new CustomStore({
+      load: (data) => {
+        return new Promise((resolve, reject) => {
+          this.restService.request({ action: "students" }).then(
+            (result: any) => {
+              if (result.list) {
+                resolve(result.list);
+              }
             }
-            else {
-              return false;
-            }
-          }
-         );
+          );
+        });
       }
-    );
-
+    });
     this.subject.emitShutter(shutter);
   }
 }

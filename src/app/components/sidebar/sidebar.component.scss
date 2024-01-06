@@ -4,8 +4,10 @@
   right: 0;
   bottom: 0;
   padding: 0 !important;
+
   #navbarVerticalCollapse {
     padding-left: 47px;
+
     .navbar-vertical-content-left {
       position: absolute;
       top: 0;
@@ -15,23 +17,29 @@
       padding-left: 10px;
       background-color: var(--inc-white);
       box-shadow: 0px 4px 10px 0 var(--inc-gray-300);
+
       ul {
         position: relative;
+
         li {
           position: relative;
+
           div.list-menu {
             a {
               padding: 0;
               margin-left: 0;
               color: var(--inc-gray-500);
               font-family: "system-ui";
+
               .align-items-center {
                 position: relative;
                 height: 38px;
               }
             }
+
             .active {
               color: var(--inc-primary-500);
+
               span.image {
                 background-color: var(--inc-primary);
               }
@@ -44,6 +52,7 @@
               left: -62px;
               bottom: 0;
               display: flex;
+
               img {
                 margin: auto;
                 width: 18px;
@@ -77,20 +86,35 @@
     font-weight: 600;
     color: var(--inc-gray-300);
     font-family: inherit;
+
     span {
       color: var(--inc-primary-500);
       font-size: 0.7rem;
       font-weight: lighter;
     }
   }
+
   .navbar-vertical-content {
     padding: 0;
   }
+
   .navbar-vertical-footer {
 
   }
+
   hr {
     width: 67%;
     border-top: 1px solid var(--inc-gray-100);
+  }
+}
+@media screen and (min-width: 1300px) {
+  .sidebar-menu {
+    #navbarVerticalCollapse {
+      .navbar-vertical-content-left {
+        .dx-icon {
+          right: 8px;
+        }
+      }
+    }
   }
 }

@@ -1,0 +1,68 @@
+uuid: 6c60fa5c-c6d0-4844-834f-47c18eed742d
+langcode: fr
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.adresses.field_adresse_active
+    - field.field.paragraph.adresses.field_adresse_code_postal
+    - field.field.paragraph.adresses.field_adresse_complement
+    - field.field.paragraph.adresses.field_adresse_num_rue_voie
+    - field.field.paragraph.adresses.field_adresse_pays
+    - field.field.paragraph.adresses.field_adresse_ville
+    - paragraphs.paragraphs_type.adresses
+id: paragraph.adresses.default
+targetEntityType: paragraph
+bundle: adresses
+mode: default
+content:
+  field_adresse_active:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_adresse_code_postal:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_adresse_complement:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_adresse_num_rue_voie:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_adresse_pays:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_adresse_ville:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden: {  }

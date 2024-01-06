@@ -1,0 +1,8 @@
+uuid: e946f71d-f971-4f5d-b309-636e940e41d6
+langcode: fr
+status: true
+dependencies: {  }
+name: Mentions
+vid: mentions
+description: ''
+weight: 0
