@@ -22,21 +22,13 @@ class UpdateNoteRestResource extends ActionResourceBase {
   public function apply(array $request, AccountProxyInterface $accountProxy): array
   {
     if (!empty($request['data'])) {
-      $data = $request['data'];
-      $note = Drupal::entityTypeManager()->getStorage('paragraph')->load($data['id']);
-      if (!empty($note)) {
-        $matter = Drupal::entityTypeManager()->getStorage('paragraph')->load($data['matter']);
-        if (!empty($matter)) {
-          $note->set('field_note_matiere', [
-            'target_id' => $matter->id(),
-            'target_revision_id' => $matter->getRevisionId()
-          ]);
-        }
-        $note->set('field_note_note', $data['note']);
-        $note->save();
+      $result = Drupal::database()->query("update {paragraph__field_note_note}
+            set field_note_note_value = " . $request['data']['note'].
+            " where(bundle = 'paragraph_notes' and entity_id = " . $request['data']['id'] . ")")->execute();
+      if ($result) {
         return [
           'code' => 200,
-          'data' => $note->id()
+          'data' => $result
         ];
       }
     }

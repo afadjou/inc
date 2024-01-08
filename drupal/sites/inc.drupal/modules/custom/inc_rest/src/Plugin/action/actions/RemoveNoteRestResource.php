@@ -20,22 +20,17 @@ class RemoveNoteRestResource extends ActionResourceBase {
   public function apply(array $request, AccountProxyInterface $accountProxy): array
   {
     if (!empty($request['id'])) {
-      $note = Drupal::entityTypeManager()->getStorage('paragraph')->load($request['id']);
-      if (!empty($note)) {
-        $note->delete();
+      $id = $request['id'];
+      $result = Drupal::database()->query("delete from {paragraphs_item_field_data} where(type = 'paragraph_notes' and id = " . $id . ")")->execute();
+      if ($result) {
         return [
-          'code' => 200
-        ];
-      } else {
-        return [
-          'code' => 404,
-          'message' => t('Erreur de chargement de l\'utilisateur')
+          'code' => 200,
         ];
       }
     }
     return [
       'code' => 404,
-      'message' => t('La valeur correspondant à la clé "uid" est vide.')
+      'message' => t('La note n\'a pas été supprimée.')
     ];
   }
 }
